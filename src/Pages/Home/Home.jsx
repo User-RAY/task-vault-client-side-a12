@@ -1,5 +1,6 @@
 import Best from "../../Components/Best/Best";
 import Hero from "../../Components/Hero/Hero";
+import How from "../../Components/How/How";
 import Testimonial from "../../Components/Testimonial/Testimonial";
 
 
@@ -11,12 +12,19 @@ const Home = () => {
             </div>
 
             <div className="mt-14 mb-6 w-11/12 mx-auto">
+
+            <h1 className="text-4xl mt-20 mb-10 font-bold text-center">Best Workers</h1>
                 <Best></Best>
             </div>
 
             <div className="mt-14 mb-6 w-11/12 mx-auto">
                 <h1 className="text-4xl mt-20 mb-10 font-bold text-center">Testimonial</h1>
                 <Testimonial></Testimonial>
+            </div>
+
+            <div className="mt-14 mb-6 w-11/12 mx-auto">
+                <h1 className="text-4xl mt-20 mb-10 font-bold text-center">How It Works</h1>
+                <How></How>
             </div>
 
         </div>
