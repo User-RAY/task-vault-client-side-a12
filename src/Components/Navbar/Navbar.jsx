@@ -4,28 +4,28 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
 
     const loading = false;
-    const user = {
-        displayName: 'hello',
-        photoURL: 'pic'
-    }
+    // const user = {
+    //     displayName: 'hello',
+    //     photoURL: 'pic'
+    // }
 
-    // const user = null;
+    const user = null;
 
     const handleLogout = () => {
 
     }
 
     const links1 = <>
-    <li><NavLink to='/all'>Login</NavLink></li>
-    <li><NavLink to='/login'>Register</NavLink></li>
-    <li><NavLink to='/login'>Join as Developer</NavLink></li>
+    <li><NavLink to='/login'>Login</NavLink></li>
+    <li><NavLink to='/register'>Register</NavLink></li>
+    <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
   </>
 
 
 const links2 = <>
     <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
     <li><NavLink to='/all'>Available Coin</NavLink></li>
-    <li><NavLink to='/login'>Join as Developer</NavLink></li>
+    <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         
 const Profile = <>
         <div className="dropdown dropdown-end tooltip tooltip-top" data-tip={user?.displayName }>
