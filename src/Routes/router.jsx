@@ -10,6 +10,7 @@ import BuyerHome from "../Pages/BuyerHome/BuyerHome";
 import AddTask from "../Pages/AddTask/AddTask";
 import MyTask from "../Pages/MyTask/MyTask";
 import History from "../Pages/History/History";
+import WorkerHome from "../Pages/WorkerHome/WorkerHome";
 
 const router = createBrowserRouter([
     {
@@ -59,7 +60,7 @@ const router = createBrowserRouter([
         // Worker Navigation route
         {
           path: "worker",
-          element: <div>worker</div>,
+          element: <WorkerHome></WorkerHome>,
         },
         {
           path: "tasklist",

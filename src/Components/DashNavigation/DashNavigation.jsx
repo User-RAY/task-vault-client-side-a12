@@ -8,7 +8,7 @@ const DashNavigation = ({children}) => {
     const user = {
         displayName: 'hello',
         photoURL: 'pic',
-        role: 'buyer'
+        role: 'worker'
     }
 
 const buyerlink = <>
