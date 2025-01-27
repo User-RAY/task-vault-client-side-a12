@@ -5,6 +5,11 @@ import { NavLink } from "react-router-dom";
 
 const DashNavigation = ({children}) => {
 
+    const user = {
+        displayName: 'hello',
+        photoURL: 'pic',
+        role: 'admin'
+    }
 
 const buyerlink = <>
 <li><NavLink to='/dashboard/buyer'>Home</NavLink></li>
@@ -12,6 +17,19 @@ const buyerlink = <>
 <li><NavLink to='/dashboard/task'>My Tasks</NavLink></li>
 <li><NavLink to='/dashboard/purchase'>Purchase Coin</NavLink></li>
 <li><NavLink to='/dashboard/history'>Payment history</NavLink></li>
+</>
+
+const workerlink = <>
+<li><NavLink to='/dashboard/worker'>Home</NavLink></li>
+<li><NavLink to='/dashboard/tasklist'>TaskList  </NavLink></li>
+<li><NavLink to='/dashboard/submissions'>My Submissions</NavLink></li>
+<li><NavLink to='/dashboard/withdrawals'>Withdrawals</NavLink></li>
+</>
+
+const adminlink = <>
+<li><NavLink to='/dashboard/admin'>Home</NavLink></li>
+<li><NavLink to='/dashboard/users'>Manage Users</NavLink></li>
+<li><NavLink to='/dashboard/managetask'>Manage Task</NavLink></li>
 </>
 
     return (
@@ -38,7 +56,7 @@ const buyerlink = <>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-72 p-4">
                 {/* Sidebar content here */}
                     {
-                        buyerlink
+                        user?.role === 'buyer' ? buyerlink : user?.role === 'worker' ? workerlink : user?.role === 'admin' ? adminlink : null
                     }
                 </ul>
             </div>
