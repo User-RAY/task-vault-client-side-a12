@@ -7,6 +7,7 @@ import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard";
 import BuyerHome from "../Pages/BuyerHome/BuyerHome";
+import AddTask from "../Pages/AddTask/AddTask";
 
 const router = createBrowserRouter([
     {
@@ -39,7 +40,7 @@ const router = createBrowserRouter([
         },
         {
           path: "add",
-          element: <div>add</div>,
+          element: <AddTask></AddTask>,
         },
         {
           path: "task",

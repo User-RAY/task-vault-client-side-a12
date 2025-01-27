@@ -13,7 +13,7 @@ const DashNavigation = ({children}) => {
 
 const buyerlink = <>
 <li><NavLink to='/dashboard/buyer'>Home</NavLink></li>
-<li><NavLink to='/dashboard/add'>Add new Tasks </NavLink></li>
+<li><NavLink to='/dashboard/add'>Add New Tasks </NavLink></li>
 <li><NavLink to='/dashboard/task'>My Tasks</NavLink></li>
 <li><NavLink to='/dashboard/purchase'>Purchase Coin</NavLink></li>
 <li><NavLink to='/dashboard/history'>Payment history</NavLink></li>
