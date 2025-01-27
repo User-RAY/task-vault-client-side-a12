@@ -11,6 +11,7 @@ import AddTask from "../Pages/AddTask/AddTask";
 import MyTask from "../Pages/MyTask/MyTask";
 import History from "../Pages/History/History";
 import WorkerHome from "../Pages/WorkerHome/WorkerHome";
+import TaskList from "../Pages/TaskList/TaskList";
 
 const router = createBrowserRouter([
     {
@@ -64,7 +65,7 @@ const router = createBrowserRouter([
         },
         {
           path: "tasklist",
-          element: <div>tasklist</div>,
+          element: <TaskList></TaskList>,
         },
         {
           path: "submissions",
