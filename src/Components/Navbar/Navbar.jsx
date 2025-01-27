@@ -4,12 +4,12 @@ import { NavLink } from "react-router-dom";
 const Navbar = () => {
 
     const loading = false;
-    // const user = {
-    //     displayName: 'hello',
-    //     photoURL: 'pic'
-    // }
+    const user = {
+        displayName: 'hello',
+        photoURL: 'pic'
+    }
 
-    const user = null;
+    // const user = null;
 
     const handleLogout = () => {
 
@@ -74,7 +74,7 @@ const Profile = <>
 
                     </ul>
                     </div>
-                    <NavLink to='/' className="btn btn-ghost text-xl"> <h1 className="hidden md:inline">TaskVault</h1></NavLink>
+                    <NavLink to='/' className="btn btn-ghost text-xl"> <h1 className="">TaskVault</h1></NavLink>
                 </div>
                 <div className="navbar-end hidden lg:flex">
 
