@@ -8,7 +8,7 @@ const DashNavigation = ({children}) => {
     const user = {
         displayName: 'hello',
         photoURL: 'pic',
-        role: 'admin'
+        role: 'buyer'
     }
 
 const buyerlink = <>
@@ -48,7 +48,6 @@ const adminlink = <>
 
                 <div className="mt-8 w-[95%] mx-auto">
                     {children}
-                    dashh
                 </div>
             </div>
             <div className="drawer-side">
