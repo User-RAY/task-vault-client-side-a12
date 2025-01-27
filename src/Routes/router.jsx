@@ -6,6 +6,7 @@ import Home from "../Pages/Home/Home";
 import Login from "../Pages/Login/Login";
 import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard";
+import BuyerHome from "../Pages/BuyerHome/BuyerHome";
 
 const router = createBrowserRouter([
     {
@@ -33,7 +34,11 @@ const router = createBrowserRouter([
       children: [
         {
           path: "buyer",
-          element: <Home />,
+          element: <BuyerHome />,
+        },
+        {
+          path: "other",
+          element: <div>other</div>,
         },
       ]
     },

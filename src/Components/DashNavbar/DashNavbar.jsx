@@ -37,9 +37,9 @@ const Profile = <>
     </>  
 
 const links1 = <>
-<li><NavLink to='/coin'>Available Coin |</NavLink></li>
-<li>userrole |</li>
-<li> {user.displayName}</li>
+    <li><NavLink to='/coin'>Available Coin</NavLink></li>
+
+    <li className="pl-3"> {user.displayName} userrole</li>
 </>
 
 
@@ -51,7 +51,7 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
 </div>    
 
     return (
-        <div className="mb-6 mt-10 w-11/12 mx-auto">
+        <div className="mt-10 w-11/12 mx-auto">
 
 
             <div className="navbar shadow-sm">
@@ -82,16 +82,21 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
                             </div>
                             <NavLink to='/' className="btn btn-ghost text-xl"> <h1 className="">TaskVault</h1></NavLink>
                         </div>
-                        <div className="navbar-end hidden lg:flex">
+                        <div className="navbar-end">
 
-                            <ul className="menu menu-horizontal px-1">
+                            <ul className="menu menu-horizontal px-1 hidden lg:flex">
                             {
                                     loading ? <span className="loading loading-bars loading-md text-blue-500"></span> : user ? links2 : links1
                             } 
                             </ul>
                             
+                            <div className="flex lg:hidden">
+                                {
+                                    Profile
+                                }
+                            </div>
                             
-                            <div className="dropdown dropdown-end">
+                            <div className="dropdown dropdown-end block">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator">
                                     <IoIosNotifications className="text-2xl" />
@@ -115,9 +120,10 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
                             
                         </div>
 
-                    </div>
+            </div>
+            
                     
-                </div>
+        </div>
                                 
 
     );

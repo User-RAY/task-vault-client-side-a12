@@ -1,16 +1,16 @@
 import { Outlet } from "react-router-dom";
 import DashNavbar from "../Components/DashNavbar/DashNavbar";
+import DashNavigation from "../Components/DashNavigation/DashNavigation";
 
 
 
 const Dashboard = () => {
     return (
         <div>
-            <DashNavbar>
-                
-            </DashNavbar>
-            <Outlet></Outlet>
-            This is dashboard
+            <DashNavbar></DashNavbar>
+            <DashNavigation><Outlet></Outlet></DashNavigation>
+
+
         </div>
     );
 };
