@@ -1,12 +1,17 @@
+import PropTypes from "prop-types";
 import { RiMenu2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
 
 
 const DashNavigation = ({children}) => {
 
-    const links1 = <>
-    <li><NavLink to='/dashboard/other'>Available Coin</NavLink></li>
-    <li><NavLink to='/dashboard/buyer'>Available Coin</NavLink></li>
+
+const buyerlink = <>
+<li><NavLink to='/dashboard/buyer'>Home</NavLink></li>
+<li><NavLink to='/dashboard/add'>Add new Tasks </NavLink></li>
+<li><NavLink to='/dashboard/task'>My Tasks</NavLink></li>
+<li><NavLink to='/dashboard/purchase'>Purchase Coin</NavLink></li>
+<li><NavLink to='/dashboard/history'>Payment history</NavLink></li>
 </>
 
     return (
@@ -33,7 +38,7 @@ const DashNavigation = ({children}) => {
                 <ul className="menu bg-base-200 text-base-content min-h-full w-72 p-4">
                 {/* Sidebar content here */}
                     {
-                        links1
+                        buyerlink
                     }
                 </ul>
             </div>
@@ -42,5 +47,9 @@ const DashNavigation = ({children}) => {
         </div>
     );
 };
+
+DashNavigation.propTypes = {
+    children: PropTypes.node,
+}
 
 export default DashNavigation;

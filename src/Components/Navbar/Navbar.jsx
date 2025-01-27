@@ -6,7 +6,8 @@ const Navbar = () => {
     const loading = false;
     const user = {
         displayName: 'hello',
-        photoURL: 'pic'
+        photoURL: 'pic',
+        role: 'buyer'
     }
 
     // const user = null;
@@ -23,7 +24,7 @@ const Navbar = () => {
 
 
 const links2 = <>
-    <li><NavLink to='/dashboard'>Dashboard</NavLink></li>
+    <li><NavLink to={user?.role === 'buyer' ? '/dashboard/buyer' : '/dashboard'}>Dashboard</NavLink></li>
     <li><NavLink to='/all'>Available Coin</NavLink></li>
     <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         

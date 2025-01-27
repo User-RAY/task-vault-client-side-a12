@@ -7,7 +7,8 @@ const DashNavbar = () => {
     const loading = false;
     const user = {
         displayName: 'hello',
-        photoURL: 'pic'
+        photoURL: 'pic',
+        role: 'buyer'
     }
 
     // const user = null;

@@ -37,8 +37,20 @@ const router = createBrowserRouter([
           element: <BuyerHome />,
         },
         {
-          path: "other",
-          element: <div>other</div>,
+          path: "add",
+          element: <div>add</div>,
+        },
+        {
+          path: "task",
+          element: <div>task</div>,
+        },
+        {
+          path: "purchase",
+          element: <div>purchase</div>,
+        },
+        {
+          path: "history",
+          element: <div>history</div>,
         },
       ]
     },
