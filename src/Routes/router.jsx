@@ -9,6 +9,7 @@ import Dashboard from "../Layout/Dashboard";
 import BuyerHome from "../Pages/BuyerHome/BuyerHome";
 import AddTask from "../Pages/AddTask/AddTask";
 import MyTask from "../Pages/MyTask/MyTask";
+import History from "../Pages/History/History";
 
 const router = createBrowserRouter([
     {
@@ -53,7 +54,7 @@ const router = createBrowserRouter([
         },
         {
           path: "history",
-          element: <div>history</div>,
+          element: <History></History>,
         },
         // Worker Navigation route
         {
