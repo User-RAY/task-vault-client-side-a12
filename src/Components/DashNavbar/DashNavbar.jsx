@@ -38,14 +38,14 @@ const Profile = <>
     </>  
 
 const links1 = <>
-    <li><NavLink to='/coin'>Available Coin</NavLink></li>
+    <li className="pl-3">$10 Coin</li>
 
     <li className="pl-3"> {user.displayName} userrole</li>
 </>
 
 
 const links2 = <div className="grid grid-cols-3 gap-2 items-center">
-    <li className="justify-self-end border-r border-black col-span-2"><NavLink to='/coin'>Available Coin </NavLink></li>
+    <li className="justify-self-end border-r border-black col-span-2 pr-2">$10 Coin</li>
     <div> {Profile}</div>
     <li className="justify-self-end border-r pr-2 border-black col-span-2">userrole </li>
     <li> {user.displayName}</li>
@@ -100,7 +100,7 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
                             <div className="dropdown dropdown-end block">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator">
-                                    <IoIosNotifications className="text-2xl" />
+                                    <IoIosNotifications className="text-2xl text-yellow-500" />
                                     <span className="badge badge-sm indicator-item">8</span>
                                     </div>
                                 </div>

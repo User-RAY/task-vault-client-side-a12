@@ -25,7 +25,7 @@ const Navbar = () => {
 
 const links2 = <>
     <li><NavLink to={user?.role === 'buyer' ? '/dashboard/buyer' : user?.role === 'worker' ? '/dashboard/worker' : user?.role === 'admin' ? '/dashboard/admin' : '/'}>Dashboard</NavLink></li>
-    <li><NavLink to='/all'>Available Coin</NavLink></li>
+    <li className="self-center">$10 Coin</li>
     <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         
 const Profile = <>

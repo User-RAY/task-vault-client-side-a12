@@ -8,6 +8,7 @@ import Register from "../Pages/Register/Register";
 import Dashboard from "../Layout/Dashboard";
 import BuyerHome from "../Pages/BuyerHome/BuyerHome";
 import AddTask from "../Pages/AddTask/AddTask";
+import MyTask from "../Pages/MyTask/MyTask";
 
 const router = createBrowserRouter([
     {
@@ -44,7 +45,7 @@ const router = createBrowserRouter([
         },
         {
           path: "task",
-          element: <div>task</div>,
+          element: <MyTask></MyTask>,
         },
         {
           path: "purchase",
