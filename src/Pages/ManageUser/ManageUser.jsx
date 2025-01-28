@@ -8,10 +8,13 @@ const ManageUser = () => {
                 {/* head */}
                 <thead>
                 <tr>
-                    <th></th>
-                    <th>Name</th>
-                    <th>Job</th>
-                    <th>Favorite Color</th>
+                    <th>#</th>
+                    <th>User Name</th>
+                    <th>User Email</th>
+                    <th>User photo</th>
+                    <th>role</th>
+                    <th>coin</th>
+                    <th>Action</th>
                 </tr>
                 </thead>
                 <tbody>
@@ -19,23 +22,35 @@ const ManageUser = () => {
                 <tr>
                     <th>1</th>
                     <td>Cy Ganderton</td>
-                    <td>Quality Control Specialist</td>
-                    <td>Blue</td>
+                    <td>dk@kf.com</td>
+                    <td>Picture</td>
+                    <td>Buyer</td>
+                    <td>200</td>
+                    <td><button className="btn btn-error">Delete user</button></td>
                 </tr>
-                {/* row 2 */}
+                {/* row 1 */}
                 <tr>
-                    <th>2</th>
-                    <td>Hart Hagerty</td>
-                    <td>Desktop Support Technician</td>
-                    <td>Purple</td>
+                    <th>1</th>
+                    <td>Cy Ganderton</td>
+                    <td>dk@kf.com</td>
+                    <td>Picture</td>
+                    <td>Buyer</td>
+                    <td>200</td>
+                    <td><button className="btn btn-error">Delete user</button></td>
                 </tr>
-                {/* row 3 */}
+                {/* row 1 */}
                 <tr>
-                    <th>3</th>
-                    <td>Brice Swyre</td>
-                    <td>Tax Accountant</td>
-                    <td>Red</td>
+                    <th>1</th>
+                    <td>Cy Ganderton</td>
+                    <td>dk@kf.com</td>
+                    <td>Picture</td>
+                    <td>Buyer</td>
+                    <td>200</td>
+                    <td><button className="btn btn-error">Delete user</button></td>
                 </tr>
+
+
+
                 </tbody>
             </table>
             </div>
