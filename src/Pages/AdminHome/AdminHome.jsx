@@ -1,6 +1,6 @@
 
 
-const WorkerHome = () => {
+const AdminHome = () => {
     return (
         <div>
 
@@ -24,7 +24,7 @@ const WorkerHome = () => {
                 </div>
             </div>
 
-            <h2 className="mt-12 mb-8 text-2xl text-center font-medium">Approved Submissions</h2>
+
 
             <div className="overflow-x-auto">
                 <table className="table table-zebra">
@@ -32,10 +32,11 @@ const WorkerHome = () => {
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>task_title</th>
-                        <th>payable_amount</th>
-                        <th>Buyer_name</th>
-                        <th>status</th>
+                        <th>User Name</th>
+                        <th>Withdrawal Amount</th>
+                        <th>Request Date</th>
+                        <th>Status</th>
+                        <th>Actions</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -43,46 +44,38 @@ const WorkerHome = () => {
                     <tr>
                         <th>1</th>
                         <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
+                        <td>200</td>
+                        <td>2222-09-22</td>
+                        <td>pending</td>
+                        <td><button className="btn btn-success">Payment Success</button></td>
                     </tr>
                     <tr>
                         <th>1</th>
                         <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
+                        <td>200</td>
+                        <td>2222-09-22</td>
+                        <td>pending</td>
+                        <td><button className="btn btn-success">Payment Success</button></td>
                     </tr>
                     <tr>
                         <th>1</th>
                         <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
+                        <td>200</td>
+                        <td>2222-09-22</td>
+                        <td>pending</td>
+                        <td><button className="btn btn-success">Payment Success</button></td>
                     </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
+                    
+
 
                     </tbody>
                 </table>
             </div>
+
 
             
         </div>
     );
 };
 
-export default WorkerHome;
+export default AdminHome;

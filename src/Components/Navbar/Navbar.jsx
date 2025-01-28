@@ -7,7 +7,7 @@ const Navbar = () => {
     const user = {
         displayName: 'hello',
         photoURL: 'pic',
-        role: 'worker'
+        role: 'admin'
     }
 
     // const user = null;

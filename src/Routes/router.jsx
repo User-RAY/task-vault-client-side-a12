@@ -12,6 +12,10 @@ import MyTask from "../Pages/MyTask/MyTask";
 import History from "../Pages/History/History";
 import WorkerHome from "../Pages/WorkerHome/WorkerHome";
 import TaskList from "../Pages/TaskList/TaskList";
+import MySubmissions from "../Pages/MySubmissions/MySubmissions";
+import Withdraw from "../Pages/Withdraw/Withdraw";
+import AdminHome from "../Pages/AdminHome/AdminHome";
+import ManageUser from "../Pages/ManageUser/ManageUser";
 
 const router = createBrowserRouter([
     {
@@ -69,21 +73,21 @@ const router = createBrowserRouter([
         },
         {
           path: "submissions",
-          element: <div>submissions</div>,
+          element: <MySubmissions></MySubmissions>,
         },
         {
           path: "withdrawals",
-          element: <div>withdrawals</div>,
+          element: <Withdraw></Withdraw>,
         },
 
         // Admin Navigation route
         {
           path: "admin",
-          element: <div>admin</div>,
+          element: <AdminHome></AdminHome>,
         },
         {
           path: "users",
-          element: <div>users</div>,
+          element: <ManageUser></ManageUser>,
         },
         {
           path: "managetask",
