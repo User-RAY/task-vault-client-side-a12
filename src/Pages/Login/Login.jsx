@@ -1,17 +1,47 @@
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
+import { useContext } from "react";
+import AuthContext from "../../Provider/Auth/AuthContext";
 
 const Login = () => {
 
-    const errorMessage = 'sdkjsd';
+    const {login, setLoading, googleLogin, errorMessage, setErrorMessage} = useContext(AuthContext);
+
+    const navigate = useNavigate();
+
+    const location = useLocation();
 
 
-    const handleLogin = () => {
+    const handleLogin = (e) => {
+        e.preventDefault();
+        setErrorMessage('');
+        const email = e.target.email.value;
+        const password = e.target.password.value;
 
+
+
+        login(email, password)
+        .then(() => {
+            e.target.reset();
+            navigate(location?.state ? location.state : '/');
+          })
+          .catch((error) => {
+            const err = error.message;
+            setErrorMessage(err)
+            setLoading(false);
+          });
     }
 
     const handleGoogle = () => {
-
+        googleLogin()
+        .then(() => {
+            // console.log(result);
+            navigate(location?.state ? location.state : '/');
+        })
+        .catch((error) => {
+            const err = error.message;
+            setErrorMessage(err)
+          });
     }
 
     return (

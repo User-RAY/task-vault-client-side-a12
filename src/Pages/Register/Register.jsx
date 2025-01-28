@@ -1,12 +1,42 @@
-import { Link } from "react-router-dom";
-
+import { useContext } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import AuthContext from "../../Provider/Auth/AuthContext";
 
 const Register = () => {
 
-    const errorMessage = 'sdkjsd';
 
+    const {register, updateUserProfile, setUser, setLoading, errorMessage, setErrorMessage} = useContext(AuthContext);
 
-    const handleRegister = () => {
+    const navigate = useNavigate();
+
+    const handleRegister = (e) => {
+
+        e.preventDefault();
+
+        setErrorMessage('');
+
+        const name = e.target.name.value;
+        const photo = e.target.photo.value;
+        const email = e.target.email.value;
+        const password = e.target.password.value;
+
+        register(email, password)
+        .then(() => {
+            const updateUserData = {displayName: name, photoURL: photo};
+            updateUserProfile(updateUserData)
+            .then(() => {
+                setUser((prevUser) => {
+                return {...prevUser, updateUserData}
+                });
+            })
+            e.target.reset();
+            navigate('/')
+          })
+          .catch((error) => {
+            const err = error.message;
+            setErrorMessage(err)
+            setLoading(false);
+          });
 
     }
 
@@ -42,16 +72,15 @@ const Register = () => {
                         </label>
                         <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
-                        <div className="form-control">
+                        {/* <div className="form-control">
                         <label className="label">
                             <span className="label-text">Role</span>
                         </label>
                         <select name="role" id="roleId" className="input appearance-auto pl-2 input-bordered" required>
                             <option value="Worker">Worker</option>
                             <option value="Buyer">Buyer</option>
-
                         </select>
-                        </div>
+                        </div> */}
                         <div className="form-control mt-2">
                         <button className="btn btn-primary">Register</button>
                         </div>

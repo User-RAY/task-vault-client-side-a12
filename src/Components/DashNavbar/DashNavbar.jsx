@@ -1,20 +1,21 @@
 import { NavLink } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
+import { useContext } from "react";
+import AuthContext from "../../Provider/Auth/AuthContext";
 
 
 const DashNavbar = () => {
 
-    const loading = false;
-    const user = {
-        displayName: 'hello',
-        photoURL: 'pic',
-        role: 'buyer'
-    }
+    const {user, signout, loading} = useContext(AuthContext);
 
-    // const user = null;
 
     const handleLogout = () => {
-
+        signout()
+        .then(() => {
+            
+            }).catch(() => {
+            
+            });
     }
 
 
@@ -40,7 +41,7 @@ const Profile = <>
 const links1 = <>
     <li className="pl-3">$10 Coin</li>
 
-    <li className="pl-3"> {user.displayName} userrole</li>
+    <li className="pl-3"> {user?.displayName} userrole</li>
 </>
 
 
@@ -48,7 +49,7 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
     <li className="justify-self-end border-r border-black col-span-2 pr-2">$10 Coin</li>
     <div> {Profile}</div>
     <li className="justify-self-end border-r pr-2 border-black col-span-2">userrole </li>
-    <li> {user.displayName}</li>
+    <li> {user?.displayName}</li>
 </div>    
 
     return (
