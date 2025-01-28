@@ -1,0 +1,113 @@
+[
+    {
+      "task_title": "Watch my YouTube video and make a comment",
+      "task_detail": "Watch a 10-minute video on my YouTube channel and leave a relevant comment below the video.",
+      "required_workers": 100,
+      "payable_amount": 10,
+      "completion_date": "2025-02-15",
+      "submission_info": "Screenshot of your comment along with the video timecode.",
+      "task_image_url": "https://imagebb.com/sample-image1.jpg",
+      "total_payable_amount": 1000,
+      "task_id": 1
+    },
+    {
+      "task_title": "Complete a short survey and submit feedback",
+      "task_detail": "Fill out a 5-minute survey about customer experience and submit detailed feedback.",
+      "required_workers": 150,
+      "payable_amount": 5,
+      "completion_date": "2025-02-18",
+      "submission_info": "Proof of survey completion (screenshot of feedback submission).",
+      "task_image_url": "https://imagebb.com/sample-image2.jpg",
+      "total_payable_amount": 750,
+      "task_id": 2
+    },
+    {
+      "task_title": "Test mobile app and report bugs",
+      "task_detail": "Download the mobile app, test the features, and report any bugs you find.",
+      "required_workers": 50,
+      "payable_amount": 20,
+      "completion_date": "2025-03-01",
+      "submission_info": "Detailed bug report and screenshots of issues found.",
+      "task_image_url": "https://imagebb.com/sample-image3.jpg",
+      "total_payable_amount": 1000,
+      "task_id": 3
+    },
+    {
+      "task_title": "Design a logo for my website",
+      "task_detail": "Create a unique logo for my new website that reflects the brand's identity.",
+      "required_workers": 10,
+      "payable_amount": 50,
+      "completion_date": "2025-02-25",
+      "submission_info": "Submit your logo design as a .png or .jpg file.",
+      "task_image_url": "https://imagebb.com/sample-image4.jpg",
+      "total_payable_amount": 500,
+      "task_id": 4
+    },
+    {
+      "task_title": "Provide data entry for a research project",
+      "task_detail": "Input data from scanned documents into an Excel spreadsheet.",
+      "required_workers": 200,
+      "payable_amount": 15,
+      "completion_date": "2025-03-05",
+      "submission_info": "Submit the Excel file with all the data entries.",
+      "task_image_url": "https://imagebb.com/sample-image5.jpg",
+      "total_payable_amount": 3000,
+      "task_id": 5
+    },
+    {
+      "task_title": "Write a blog post on SEO strategies",
+      "task_detail": "Write a detailed blog post (1000-1500 words) on the latest SEO strategies.",
+      "required_workers": 30,
+      "payable_amount": 25,
+      "completion_date": "2025-03-10",
+      "submission_info": "Submit the post in .docx or .pdf format.",
+      "task_image_url": "https://imagebb.com/sample-image6.jpg",
+      "total_payable_amount": 750,
+      "task_id": 6
+    },
+    {
+      "task_title": "Create a social media post for an event",
+      "task_detail": "Design an eye-catching social media post to promote an upcoming event.",
+      "required_workers": 50,
+      "payable_amount": 12,
+      "completion_date": "2025-02-20",
+      "submission_info": "Submit the social media post as a .jpg or .png image.",
+      "task_image_url": "https://imagebb.com/sample-image7.jpg",
+      "total_payable_amount": 600,
+      "task_id": 7
+    },
+    {
+      "task_title": "Test website usability",
+      "task_detail": "Navigate through the website and test for user-friendliness and ease of use.",
+      "required_workers": 100,
+      "payable_amount": 15,
+      "completion_date": "2025-03-15",
+      "submission_info": "Submit a detailed usability report and any issues found.",
+      "task_image_url": "https://imagebb.com/sample-image8.jpg",
+      "total_payable_amount": 1500,
+      "task_id": 8
+    },
+    {
+      "task_title": "Translate a document from English to Spanish",
+      "task_detail": "Translate a 10-page document from English to Spanish accurately.",
+      "required_workers": 20,
+      "payable_amount": 30,
+      "completion_date": "2025-03-12",
+      "submission_info": "Submit the translated document in .docx format.",
+      "task_image_url": "https://imagebb.com/sample-image9.jpg",
+      "total_payable_amount": 600,
+      "task_id": 9
+    },
+    {
+      "task_title": "Create a YouTube video thumbnail",
+      "task_detail": "Design an attention-grabbing thumbnail for a YouTube video on tech tutorials.",
+      "required_workers": 25,
+      "payable_amount": 20,
+      "completion_date": "2025-02-28",
+      "submission_info": "Submit the thumbnail image in .png format.",
+      "task_image_url": "https://imagebb.com/sample-image10.jpg",
+      "total_payable_amount": 500,
+      "task_id": 10
+    }
+  ]
+  

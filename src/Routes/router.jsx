@@ -18,6 +18,7 @@ import AdminHome from "../Pages/AdminHome/AdminHome";
 import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageTask from "../Pages/ManageTask/ManageTask";
 import PrivateRoute from "./PrivateRoute";
+import TaskDetails from "../Pages/TaskDetails/TaskDetails";
 
 const router = createBrowserRouter([
     {
@@ -80,6 +81,10 @@ const router = createBrowserRouter([
         {
           path: "withdrawals",
           element: <Withdraw></Withdraw>,
+        },
+        {
+          path: "details",
+          element: <TaskDetails></TaskDetails>,
         },
 
         // Admin Navigation route
