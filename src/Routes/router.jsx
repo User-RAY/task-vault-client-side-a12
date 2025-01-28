@@ -17,6 +17,7 @@ import Withdraw from "../Pages/Withdraw/Withdraw";
 import AdminHome from "../Pages/AdminHome/AdminHome";
 import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageTask from "../Pages/ManageTask/ManageTask";
+import PrivateRoute from "./PrivateRoute";
 
 const router = createBrowserRouter([
     {
@@ -40,7 +41,7 @@ const router = createBrowserRouter([
     },
     {
       path: "/dashboard",
-      element: <Dashboard />,
+      element: <PrivateRoute><Dashboard /></PrivateRoute>,
       children: [
         //Buyer Navigation route
         {
