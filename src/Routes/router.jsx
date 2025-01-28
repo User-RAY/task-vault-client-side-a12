@@ -16,6 +16,7 @@ import MySubmissions from "../Pages/MySubmissions/MySubmissions";
 import Withdraw from "../Pages/Withdraw/Withdraw";
 import AdminHome from "../Pages/AdminHome/AdminHome";
 import ManageUser from "../Pages/ManageUser/ManageUser";
+import ManageTask from "../Pages/ManageTask/ManageTask";
 
 const router = createBrowserRouter([
     {
@@ -91,7 +92,7 @@ const router = createBrowserRouter([
         },
         {
           path: "managetask",
-          element: <div>managetask</div>,
+          element: <ManageTask></ManageTask>,
         },
 
       ]
