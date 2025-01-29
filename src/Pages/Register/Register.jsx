@@ -1,13 +1,20 @@
-import { useContext } from "react";
+import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Provider/Auth/AuthContext";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
 
 const Register = () => {
 
-
+    const axiosPublic = useAxiosPublic();
     const {register, updateUserProfile, setUser, setLoading, errorMessage, setErrorMessage} = useContext(AuthContext);
 
     const navigate = useNavigate();
+
+    const [selectedOption, setSelectedOption] = useState("");
+
+    const handleChange = (e) => {
+      setSelectedOption(e.target.value);
+    };
 
     const handleRegister = (e) => {
 
@@ -19,6 +26,14 @@ const Register = () => {
         const photo = e.target.photo.value;
         const email = e.target.email.value;
         const password = e.target.password.value;
+        const role = selectedOption;
+        let coin = 0;
+        if (role === "worker") {
+            coin = 10;
+        } else {
+            coin = 50;
+        }
+        
 
         register(email, password)
         .then(() => {
@@ -29,7 +44,20 @@ const Register = () => {
                 return {...prevUser, updateUserData}
                 });
             })
-            e.target.reset();
+            const userInfo = {
+                user_name: name,
+                user_email: email,
+                user_img: photo,
+                coin: coin,
+                role: role
+            }
+
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                console.log(res.data);
+                
+                e.target.reset();
+            })
             navigate('/')
           })
           .catch((error) => {
@@ -72,15 +100,18 @@ const Register = () => {
                         </label>
                         <input type="password" name="password" placeholder="password" className="input input-bordered" required />
                         </div>
-                        {/* <div className="form-control">
+
+                        <div className="form-control">
                         <label className="label">
                             <span className="label-text">Role</span>
                         </label>
-                        <select name="role" id="roleId" className="input appearance-auto pl-2 input-bordered" required>
-                            <option value="Worker">Worker</option>
-                            <option value="Buyer">Buyer</option>
+                        <select name="role" value={selectedOption} onChange={handleChange}  className="input appearance-auto pl-2 input-bordered" required>
+                            <option value='' disabled>Select Role</option>
+                            <option value="worker">Worker</option>
+                            <option value="buyer">Buyer</option>
                         </select>
-                        </div> */}
+                        </div>
+
                         <div className="form-control mt-2">
                         <button className="btn btn-primary">Register</button>
                         </div>

@@ -1,15 +1,12 @@
 import PropTypes from "prop-types";
 import { RiMenu2Fill } from "react-icons/ri";
 import { NavLink } from "react-router-dom";
+import useUser from "../../Hooks/useUser";
 
 
 const DashNavigation = ({children}) => {
 
-    const user = {
-        displayName: 'hello',
-        photoURL: 'pic',
-        role: 'worker'
-    }
+    const {userInfo} = useUser();
 
 const buyerlink = <>
 <li><NavLink to='/dashboard/buyer'>Home</NavLink></li>
@@ -55,7 +52,7 @@ const adminlink = <>
                 <ul className="menu bg-base-200 text-base-content min-h-full w-72 p-4">
                 {/* Sidebar content here */}
                     {
-                        user?.role === 'buyer' ? buyerlink : user?.role === 'worker' ? workerlink : user?.role === 'admin' ? adminlink : null
+                        userInfo?.role === 'buyer' ? buyerlink : userInfo?.role === 'worker' ? workerlink : userInfo?.role === 'admin' ? adminlink : null
                     }
                 </ul>
             </div>

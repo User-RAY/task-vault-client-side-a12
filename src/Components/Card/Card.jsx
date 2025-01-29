@@ -1,6 +1,9 @@
+import PropTypes from "prop-types";
+import { NavLink } from "react-router-dom";
 
 
-const Card = () => {
+const Card = ({data = {}}) => {
+    
     return (
         <div>
 
@@ -12,14 +15,14 @@ const Card = () => {
                     alt="Shoes" />
                 </figure>
                 <div className="card-body">
-                <h2>Buyer Name</h2>
-                    <h2 className="card-title">Task Title</h2>
-                    <h2 className="font-bold">required_workers: 10</h2>
-                    <h2 className="font-bold">payable_amount : 1$</h2>
-                    <h2 className="font-bold">completion_date: 2201-392-2 </h2>
+                <h2>{data.Buyer_name}</h2>
+                    <h2 className="card-title">{data.task_title}</h2>
+                    <h2 className="font-bold">required_workers: {data.required_workers}</h2>
+                    <h2 className="font-bold">payable_amount : {data.payable_amount}$</h2>
+                    <h2 className="font-bold">completion_date: {data.completion_date}</h2>
 
                     <div className="card-actions justify-end mt-2">
-                    <button className="btn btn-primary">View Details</button>
+                    <NavLink to={`/dashboard/details`} className="btn btn-primary">View Details</NavLink>
                     </div>
                 </div>
             </div>
@@ -27,5 +30,9 @@ const Card = () => {
         </div>
     );
 };
+
+Card.propTypes = {
+    data: PropTypes.object,
+}
 
 export default Card;

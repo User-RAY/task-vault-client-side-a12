@@ -2,12 +2,14 @@ import { NavLink } from "react-router-dom";
 import { IoIosNotifications } from "react-icons/io";
 import { useContext } from "react";
 import AuthContext from "../../Provider/Auth/AuthContext";
+import useUser from "../../Hooks/useUser";
 
 
 const DashNavbar = () => {
 
     const {user, signout, loading} = useContext(AuthContext);
-
+    const {userInfo} = useUser();
+    
 
     const handleLogout = () => {
         signout()
@@ -39,16 +41,16 @@ const Profile = <>
     </>  
 
 const links1 = <>
-    <li className="pl-3">$10 Coin</li>
+    <li className="pl-3">${userInfo?.coin} Coin</li>
 
-    <li className="pl-3"> {user?.displayName} userrole</li>
+    <li className="pl-3"> {user?.displayName} | {userInfo?.role}</li>
 </>
 
 
 const links2 = <div className="grid grid-cols-3 gap-2 items-center">
-    <li className="justify-self-end border-r border-black col-span-2 pr-2">$10 Coin</li>
+    <li className="justify-self-end border-r border-black col-span-2 pr-2">${userInfo?.coin} Coin</li>
     <div> {Profile}</div>
-    <li className="justify-self-end border-r pr-2 border-black col-span-2">userrole </li>
+    <li className="justify-self-end border-r pr-2 border-black col-span-2">{userInfo?.role} </li>
     <li> {user?.displayName}</li>
 </div>    
 

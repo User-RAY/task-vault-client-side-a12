@@ -19,6 +19,10 @@ import ManageUser from "../Pages/ManageUser/ManageUser";
 import ManageTask from "../Pages/ManageTask/ManageTask";
 import PrivateRoute from "./PrivateRoute";
 import TaskDetails from "../Pages/TaskDetails/TaskDetails";
+import LogRoute from "./LogRoute";
+import WorkerRoute from "./WorkerRoute";
+import BuyerRoute from "./BuyerRoute";
+import AdminRoute from "./AdminRoute";
 
 const router = createBrowserRouter([
     {
@@ -32,11 +36,11 @@ const router = createBrowserRouter([
         },
         {
           path: "/login",
-          element: <Login />,
+          element: <LogRoute><Login /></LogRoute>,
         },
         {
           path: "/register",
-          element: <Register />,
+          element: <LogRoute> <Register /> </LogRoute>,
         },
       ]
     },
@@ -47,58 +51,58 @@ const router = createBrowserRouter([
         //Buyer Navigation route
         {
           path: "buyer",
-          element: <BuyerHome />,
+          element: <BuyerRoute><BuyerHome /></BuyerRoute>,
         },
         {
           path: "add",
-          element: <AddTask></AddTask>,
+          element: <BuyerRoute><AddTask></AddTask></BuyerRoute>,
         },
         {
           path: "task",
-          element: <MyTask></MyTask>,
+          element: <BuyerRoute><MyTask></MyTask></BuyerRoute>,
         },
         {
           path: "purchase",
-          element: <div>purchase</div>,
+          element: <BuyerRoute><div>purchase</div></BuyerRoute>,
         },
         {
           path: "history",
-          element: <History></History>,
+          element: <BuyerRoute><History></History></BuyerRoute>,
         },
         // Worker Navigation route
         {
           path: "worker",
-          element: <WorkerHome></WorkerHome>,
+          element: <WorkerRoute><WorkerHome></WorkerHome></WorkerRoute>,
         },
         {
           path: "tasklist",
-          element: <TaskList></TaskList>,
+          element: <WorkerRoute><TaskList></TaskList></WorkerRoute>,
         },
         {
           path: "submissions",
-          element: <MySubmissions></MySubmissions>,
+          element: <WorkerRoute><MySubmissions></MySubmissions></WorkerRoute>,
         },
         {
           path: "withdrawals",
-          element: <Withdraw></Withdraw>,
+          element: <WorkerRoute><Withdraw></Withdraw></WorkerRoute>,
         },
         {
           path: "details",
-          element: <TaskDetails></TaskDetails>,
+          element: <WorkerRoute><TaskDetails></TaskDetails></WorkerRoute>,
         },
 
         // Admin Navigation route
         {
           path: "admin",
-          element: <AdminHome></AdminHome>,
+          element: <AdminRoute><AdminHome></AdminHome></AdminRoute>,
         },
         {
           path: "users",
-          element: <ManageUser></ManageUser>,
+          element: <AdminRoute><ManageUser></ManageUser></AdminRoute>,
         },
         {
           path: "managetask",
-          element: <ManageTask></ManageTask>,
+          element: <AdminRoute><ManageTask></ManageTask></AdminRoute>,
         },
 
       ]

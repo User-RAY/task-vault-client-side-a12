@@ -1,11 +1,14 @@
 import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../Provider/Auth/AuthContext";
+import useUser from "../../Hooks/useUser";
 
 
 const Navbar = () => {
 
     const {user, signout, loading} = useContext(AuthContext);
+
+    const {userInfo} = useUser();
 
 
     const handleLogout = () => {
@@ -25,8 +28,8 @@ const Navbar = () => {
 
 
 const links2 = <>
-    <li><NavLink to={user?.role === 'buyer' ? '/dashboard/buyer' : user?.role === 'worker' ? '/dashboard/worker' : user?.role === 'admin' ? '/dashboard/admin' : '/dashboard/worker'}>Dashboard</NavLink></li>
-    <li className="self-center">$10 Coin</li>
+    <li><NavLink to={userInfo?.role === 'buyer' ? '/dashboard/buyer' : userInfo?.role === 'worker' ? '/dashboard/worker' : userInfo?.role === 'admin' ? '/dashboard/admin' : '/dashboard/worker'}>Dashboard</NavLink></li>
+    <li className="self-center">${userInfo?.coin} Coin</li>
     <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         
 const Profile = <>

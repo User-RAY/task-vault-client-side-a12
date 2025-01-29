@@ -2,14 +2,20 @@ import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import AuthContext from "../../Provider/Auth/AuthContext";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import { UserInfoContext } from "../../Provider/Auth/UserInfoProvider";
 
 const Login = () => {
 
     const {login, setLoading, googleLogin, errorMessage, setErrorMessage} = useContext(AuthContext);
 
+    const {setUserinfo} = useContext(UserInfoContext);
+
     const navigate = useNavigate();
 
     const location = useLocation();
+
+    const axiosPublic = useAxiosPublic();
 
 
     const handleLogin = (e) => {
@@ -33,10 +39,26 @@ const Login = () => {
     }
 
     const handleGoogle = () => {
+        
         googleLogin()
-        .then(() => {
-            // console.log(result);
-            navigate(location?.state ? location.state : '/');
+        .then((result) => {
+            
+            const userInfo = {
+                user_name: result.user?.displayName,
+                user_email: result.user?.email,
+                user_img: result.user?.photoURL,
+                coin: 10,
+                role: "worker"
+            }
+            
+
+            axiosPublic.post('/users', userInfo)
+            .then(res => {
+                setUserinfo(res.data);
+                navigate(location?.state ? location.state : '/');
+            })
+
+
         })
         .catch((error) => {
             const err = error.message;
@@ -77,7 +99,7 @@ const Login = () => {
 
                     <div className="px-4">
                         <div className="divider text-black">OR</div>
-                        <button className="btn max-w-sm w-full bg-black text-white mb-4 shadow-2xl" onSubmit={handleGoogle}> <FcGoogle className="text-xl" />Login with Google</button>
+                        <button className="btn max-w-sm w-full bg-black text-white mb-4 shadow-2xl" onClick={handleGoogle}> <FcGoogle className="text-xl" />Login with Google</button>
                     </div>
                     <h2 className="px-8 mb-4 text-center text-black ">Do not have an account? then <Link to='/register' className="text-blue-600">Register</Link></h2>
                 </div>
