@@ -5,21 +5,21 @@ import { NavLink } from "react-router-dom";
 const Card = ({data = {}}) => {
     
     return (
-        <div>
+        <>
 
 
-            <div className="card bg-base-100 shadow-xl">
+            <div className="card bg-base-100 shadow-xl h-full">
                 <figure>
                     <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
-                    alt="Shoes" />
+                    src={data.task_image_url}
+                    alt="Shoes" className="object-cover w-full h-full"/>
                 </figure>
-                <div className="card-body">
-                <h2>{data.Buyer_name}</h2>
-                    <h2 className="card-title">{data.task_title}</h2>
-                    <h2 className="font-bold">required_workers: {data.required_workers}</h2>
-                    <h2 className="font-bold">payable_amount : {data.payable_amount}$</h2>
-                    <h2 className="font-bold">completion_date: {data.completion_date}</h2>
+                <div className="card-body flex-grow">
+                <h2>{data.buyer_name}</h2>
+                    <h2 className="card-title flex-grow">{data.task_title}</h2>
+                    <h2 className="font-bold flex-grow">required_workers: {data.required_workers}</h2>
+                    <h2 className="font-bold flex-grow">payable_amount : {data.payable_amount}$</h2>
+                    <h2 className="font-bold flex-grow">completion_date: {data.completion_date}</h2>
 
                     <div className="card-actions justify-end mt-2">
                     <NavLink to={`/dashboard/details`} className="btn btn-primary">View Details</NavLink>
@@ -27,7 +27,7 @@ const Card = ({data = {}}) => {
                 </div>
             </div>
             
-        </div>
+        </>
     );
 };
 

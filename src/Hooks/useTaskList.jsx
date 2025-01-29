@@ -8,7 +8,7 @@ const useTaskList = () => {
     const {data: taskList = [], isPending: loading, refetch} = useQuery({
         queryKey: ['taskList'], 
         queryFn: async() =>{
-            const res = await axiosPublic.get('/FakeData.json');
+            const res = await axiosPublic.get('/tasklist');
             return res.data;
         }
     })

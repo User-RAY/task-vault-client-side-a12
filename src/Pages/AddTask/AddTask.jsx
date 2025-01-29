@@ -1,15 +1,75 @@
 import { useForm } from "react-hook-form";
-
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useUser from "../../Hooks/useUser";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import Swal from 'sweetalert2'
 const AddTask = () => {
 
+    const {userInfo} = useUser();
 
-    const { register,  handleSubmit, formState: { errors } } = useForm();
+    const { register, reset,  handleSubmit, formState: { errors } } = useForm();
 
+    const axiosPublic = useAxiosPublic();
+    const axiosSecure = useAxiosSecure()
 
+    const imgHostApi = import.meta.env.VITE_imageHostApi;
 
-    const handleAdd = () => {
+    const imgHost = `https://api.imgbb.com/1/upload?key=${imgHostApi}`
+
+    const handleAdd = async(data) => {
+
+        Swal.fire({
+            position: "top-left",
+            icon: "info",
+            title: "Please wait...Image is Uploading",
+            showConfirmButton: false,
+            timer: 1000
+          });
+        
+        const imageFile = {image: data.task_image_url[0]}
+        const res = await axiosPublic.post(imgHost, imageFile, {
+            headers: {
+                'content-type': 'multipart/form-data'
+            }
+        });
+
+        console.log(res.data);
+        console.log(res.data.success);
         
 
+        if (res.data.success) {
+            
+            const taskInfo = {
+                task_title: data.task_title,
+                task_detail: data.task_detail,
+                required_workers: parseInt(data.required_workers),
+                payable_amount: parseFloat(data.payable_amount),
+                completion_date: data.completion_date,
+                submission_info: data.submission_info,
+                task_image_url: res.data.data.display_url,
+                buyer_name: userInfo.user_name,
+                buyer_email: userInfo.user_email,
+            }
+            console.log(taskInfo);
+
+            const  result = await axiosSecure.post('/addtask', taskInfo);
+
+            if (result.data.insertedId) {
+                reset();
+                Swal.fire({
+                    position: "top-end",
+                    icon: "success",
+                    title: "Your work has been saved",
+                    showConfirmButton: false,
+                    timer: 1500
+                  });
+            }
+            
+
+        }
+        
+        
+        
       }
 
 
