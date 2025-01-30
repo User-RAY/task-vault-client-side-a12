@@ -1,6 +1,25 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../Hooks/useUser";
 
 
 const MySubmissions = () => {
+    
+
+    const axiosSecure = useAxiosSecure();
+
+    const {userInfo} = useUser();
+
+    const {data: mySubmissions = []} = useQuery({
+        queryKey: ['MySubmissions'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/submission/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+
+
     return (
         <div>
 
@@ -19,41 +38,18 @@ const MySubmissions = () => {
                     </thead>
                     <tbody>
                     {/* row 1 */}
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>pending</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>pending</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>rejected</td>
-                    </tr>
+
+
+                    {
+                        mySubmissions.map((submission,index) => <tr key={submission._id}>
+                            <th>{index+1}</th>
+                            <td>{submission.task_title}</td>
+                            <td>{submission.payable_amount}</td>
+                            <td>{submission.buyer_name}</td>
+                            <td className="font-bold">{submission.status}</td>
+                        </tr> )
+                    }
+
 
                     </tbody>
                 </table>

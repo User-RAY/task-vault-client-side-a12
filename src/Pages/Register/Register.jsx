@@ -53,8 +53,7 @@ const Register = () => {
             }
 
             axiosPublic.post('/users', userInfo)
-            .then(res => {
-                console.log(res.data);
+            .then(() => {
                 
                 e.target.reset();
             })

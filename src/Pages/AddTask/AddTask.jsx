@@ -33,8 +33,7 @@ const AddTask = () => {
             }
         });
 
-        console.log(res.data);
-        console.log(res.data.success);
+
         
 
         if (res.data.success) {
@@ -50,7 +49,6 @@ const AddTask = () => {
                 buyer_name: userInfo.user_name,
                 buyer_email: userInfo.user_email,
             }
-            console.log(taskInfo);
 
             const  result = await axiosSecure.post('/addtask', taskInfo);
 

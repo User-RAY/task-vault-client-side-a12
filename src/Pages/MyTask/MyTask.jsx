@@ -1,6 +1,27 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import useUser from "../../Hooks/useUser";
 
 
 const MyTask = () => {
+
+    const axiosPublic = useAxiosPublic();
+
+    const {userInfo} = useUser()
+
+    const {data: mytask = []} = useQuery({
+        queryKey: ['mytask'], 
+        queryFn: async() =>{
+            const res = await axiosPublic.get(`/mytask/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+    console.log(mytask);
+    
+    
+
+
     return (
         <div>
 
@@ -20,67 +41,28 @@ const MyTask = () => {
                 </thead>
                 <tbody>
                 {/* row 1 */}
-                <tr>
-                    <th>1</th>
-                    <td>
-                        <div className="flex items-center gap-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle h-12 w-12">
-                                        <img
-                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                        alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                        </div>
-                    </td>
-                    <td>Title</td>
-                    <td>completion_date</td>
-                    <td>Update</td>
-                    <td>Delete</td>
-                    
-                </tr>
 
-                    {/* row 1 */}
-                    <tr>
-                    <th>2</th>
-                    <td>
-                        <div className="flex items-center gap-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle h-12 w-12">
-                                        <img
-                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                        alt="Avatar Tailwind CSS Component" />
+                {
+                    mytask.map((taskInfo, index) =>                 <tr key={taskInfo._id}>
+                        <th>{index+1}</th>
+                        <td>
+                            <div className="flex items-center gap-3">
+                                    <div className="avatar">
+                                        <div className="mask mask-squircle h-12 w-12">
+                                            <img
+                                            src={taskInfo.task_image_url}
+                                            alt="task image" />
+                                        </div>
                                     </div>
-                                </div>
-                        </div>
-                    </td>
-                    <td>Title</td>
-                    <td>completion_date</td>
-                    <td>Update</td>
-                    <td>Delete</td>
-                    
-                </tr>
-
-                                {/* row 1 */}
-                                <tr>
-                    <th>3</th>
-                    <td>
-                        <div className="flex items-center gap-3">
-                                <div className="avatar">
-                                    <div className="mask mask-squircle h-12 w-12">
-                                        <img
-                                        src="https://img.daisyui.com/images/profile/demo/2@94.webp"
-                                        alt="Avatar Tailwind CSS Component" />
-                                    </div>
-                                </div>
-                        </div>
-                    </td>
-                    <td>Title</td>
-                    <td>completion_date</td>
-                    <td>Update</td>
-                    <td>Delete</td>
-                    
-                </tr>
+                            </div>
+                        </td>
+                        <td>{taskInfo.task_title}</td>
+                        <td>{taskInfo.completion_date}</td>
+                        <td><button className="btn btn-info">Update</button></td>
+                        <td><button className="btn btn-error">Delete</button></td>
+                        
+                    </tr>)
+                }
 
                 </tbody>
             </table>

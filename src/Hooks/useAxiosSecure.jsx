@@ -10,7 +10,7 @@ const axiosSecure = axios.create({
 const useAxiosSecure = () => {
 
     const navigate = useNavigate();
-    const {signout} = useContext(AuthContext);
+    const {signout, setLoading} = useContext(AuthContext);
 
     axiosSecure.interceptors.request.use(function (config) {
         const token = localStorage.getItem('access-token')
@@ -28,6 +28,7 @@ const useAxiosSecure = () => {
         if (status === 401 || status === 403) {
             await signout();
             navigate('/login');
+            setLoading(false);
         }
         return Promise.reject(error);
     })

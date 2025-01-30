@@ -3,13 +3,13 @@ import { FcGoogle } from "react-icons/fc";
 import { useContext } from "react";
 import AuthContext from "../../Provider/Auth/AuthContext";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
-import { UserInfoContext } from "../../Provider/Auth/UserInfoProvider";
+
 
 const Login = () => {
 
     const {login, setLoading, googleLogin, errorMessage, setErrorMessage} = useContext(AuthContext);
 
-    const {setUserinfo} = useContext(UserInfoContext);
+
 
     const navigate = useNavigate();
 
@@ -53,8 +53,7 @@ const Login = () => {
             
 
             axiosPublic.post('/users', userInfo)
-            .then(res => {
-                setUserinfo(res.data);
+            .then( () => {
                 navigate(location?.state ? location.state : '/');
             })
 

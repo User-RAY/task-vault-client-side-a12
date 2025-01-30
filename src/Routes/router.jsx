@@ -87,7 +87,7 @@ const router = createBrowserRouter([
           element: <WorkerRoute><Withdraw></Withdraw></WorkerRoute>,
         },
         {
-          path: "details",
+          path: "details/:id",
           element: <WorkerRoute><TaskDetails></TaskDetails></WorkerRoute>,
         },
 

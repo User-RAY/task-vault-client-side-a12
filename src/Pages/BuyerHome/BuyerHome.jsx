@@ -1,6 +1,55 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../Hooks/useUser";
+import { useState } from "react";
+import Swal from "sweetalert2";
 
 
 const BuyerHome = () => {
+
+    const [selectedSub, setSelectedSub] = useState(null);
+
+    const axiosSecure = useAxiosSecure();
+
+    const {userInfo} = useUser();
+
+    const {data: subReview = [], refetch} = useQuery({
+        queryKey: ['subReview'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/review/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+    const handleAction = async(id, action) => {
+
+
+        const takenAction = {
+            status: action
+        }
+        
+        const res = await axiosSecure.patch(`/status/${id}`, takenAction);
+
+
+        if (res.data.modifiedCount) {
+            refetch();
+            Swal.fire({
+                position: "top-end",
+                icon: "success",
+                title: "Status Upadated",
+                showConfirmButton: false,
+                timer: 1500
+              });
+        }
+
+
+    }
+
+
+
+
+    
+
     return (
         <div>
 
@@ -41,44 +90,41 @@ const BuyerHome = () => {
                     </tr>
                     </thead>
                     <tbody>
-                    {/* row 1 */}
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>10 coin</td>
-                        <th><button className="btn btn-info">View</button></th>
-                        <td><button className="btn btn-primary">Approve</button> <button className="btn btn-error">Reject</button></td>
-                    </tr>
-                    {/* row 2 */}
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Desktop Support Techniciann</td>
-                        <td>20 coin</td>
-                        <th><button className="btn btn-info">View</button></th>
-                        <td><button className="btn btn-primary">Approve</button> <button className="btn btn-error">Reject</button></td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Tax Accountant</td>
-                        <td>15 coin</td>
-                        <th><button className="btn btn-info">View</button></th>
-                        <td><button className="btn btn-primary">Approve</button> <button className="btn btn-error">Reject</button></td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Desktop Support Techniciann</td>
-                        <td>10 coin</td>
-                        <th><button className="btn btn-info">View</button></th>
-                        <td><button className="btn btn-primary">Approve</button> <button className="btn btn-error">Reject</button></td>
-                    </tr>
+
+                    {
+                        subReview.map((sub, index) =><tr key={sub._id}>
+                        <th>{index+1}</th>
+                        <td>{sub.worker_name}</td>
+                        <td>{sub.task_title}</td>
+                        <td>{sub.payable_amount} coin</td>
+                        <th><button className="btn btn-info" onClick={()=> {
+                            setSelectedSub(sub.submission_details); 
+                            document.getElementById('my_modal_5').showModal()
+                            }}>View</button></th>
+                        <td><button className="btn btn-primary" onClick={() => handleAction(sub._id, 'approve')}>Approve</button> <button className="btn btn-error" onClick={() => handleAction(sub._id, 'reject')}>Reject</button></td>
+                    </tr>)
+                    }
 
                     </tbody>
                 </table>
             </div>
+
+
+
+
+            {/* Open the modal using document.getElementById('ID').showModal() method */}
+            <dialog id="my_modal_5" className="modal modal-bottom sm:modal-middle">
+            <div className="modal-box">
+                <h3 className="font-bold text-lg">Submission details</h3>
+                <p className="py-4">{selectedSub}</p>
+                <div className="modal-action">
+                <form method="dialog">
+                    {/* if there is a button in form, it will close the modal */}
+                    <button className="btn">Close</button>
+                </form>
+                </div>
+            </div>
+            </dialog>
 
 
         </div>

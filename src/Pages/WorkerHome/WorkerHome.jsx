@@ -1,6 +1,24 @@
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../Hooks/useUser";
 
 
 const WorkerHome = () => {
+
+    const axiosSecure = useAxiosSecure();
+
+    const {userInfo} = useUser();
+
+    const {data: approvedSubmissions = []} = useQuery({
+        queryKey: ['approvedSubmissions'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/submissions/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+    
+
     return (
         <div>
 
@@ -40,41 +58,17 @@ const WorkerHome = () => {
                     </thead>
                     <tbody>
                     {/* row 1 */}
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
-                    <tr>
-                        <th>1</th>
-                        <td>Cy Ganderton</td>
-                        <td>Quality Control Specialist</td>
-                        <td>Blue</td>
-                        <td>Approve</td>
-                    </tr>
+
+
+                    {
+                        approvedSubmissions.map((approve, index) => <tr key={approve._id}>
+                            <th>{index + 1}</th>
+                            <td>{approve.task_title}</td>
+                            <td>{approve.payable_amount}</td>
+                            <td>{approve.buyer_name}</td>
+                            <td>{approve.status}</td>
+                        </tr> )
+                    }
 
                     </tbody>
                 </table>

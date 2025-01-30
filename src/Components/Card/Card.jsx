@@ -22,7 +22,7 @@ const Card = ({data = {}}) => {
                     <h2 className="font-bold flex-grow">completion_date: {data.completion_date}</h2>
 
                     <div className="card-actions justify-end mt-2">
-                    <NavLink to={`/dashboard/details`} className="btn btn-primary">View Details</NavLink>
+                    <NavLink to={`/dashboard/details/${data._id}`} className="btn btn-primary">View Details</NavLink>
                     </div>
                 </div>
             </div>
