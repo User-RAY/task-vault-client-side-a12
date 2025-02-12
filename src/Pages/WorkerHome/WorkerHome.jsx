@@ -16,6 +16,26 @@ const WorkerHome = () => {
             return res.data;
         }
     })
+    const {data: pendingSubmissions = []} = useQuery({
+        queryKey: ['pendingSubmissions'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/pendingsub/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+    const {data: totalmySubmissions = []} = useQuery({
+        queryKey: ['MySubmissions'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/submission/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+    const totalSubmissionCount = totalmySubmissions.length;
+    const totalPendingSubmissionCount = pendingSubmissions.length;
+
+    
 
     
 
@@ -25,14 +45,12 @@ const WorkerHome = () => {
             <div className="flex justify-center mb-8">
                 <div className="stats stats-vertical lg:stats-horizontal shadow w-5/6">
                 <div className="stat">
-                    <div className="stat-title">Downloads</div>
-                    <div className="stat-value">31K</div>
-                    <div className="stat-desc">Jan 1st - Feb 1st</div>
+                    <div className="stat-title">Total Submissions</div>
+                    <div className="stat-value">{totalSubmissionCount}</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-title">New Users</div>
-                    <div className="stat-value">4,200</div>
-                    <div className="stat-desc">↗︎ 400 (22%)</div>
+                    <div className="stat-title">Total Pending Submission</div>
+                    <div className="stat-value">{totalPendingSubmissionCount}</div>
                 </div>
                 <div className="stat">
                     <div className="stat-title">New Registers</div>

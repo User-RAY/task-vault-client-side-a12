@@ -10,7 +10,7 @@ const useUser = () => {
     const axiosSecure = useAxiosSecure();
     const token = localStorage.getItem('access-token')
 
-    const {data: userInfo, isPending: userLoading} = useQuery({
+    const {data: userInfo, isPending: userLoading, refetch} = useQuery({
         queryKey: [user?.email],
   
         queryFn: async() => {
@@ -20,7 +20,7 @@ const useUser = () => {
         },
         enabled: !!token,
     })
-    return { userInfo, userLoading}
+    return { userInfo, userLoading, refetch}
 };
 
 export default useUser;

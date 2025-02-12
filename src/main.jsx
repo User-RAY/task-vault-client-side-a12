@@ -14,6 +14,7 @@ import {
   QueryClientProvider,
 } from '@tanstack/react-query'
 import {UserInfoProvider} from './Provider/Auth/UserInfoProvider';
+import { PriceProvider } from './Provider/PriceProvider';
 
 const queryClient = new QueryClient()
 
@@ -21,9 +22,11 @@ createRoot(document.getElementById('root')).render(
   <StrictMode>
     <AuthProvider>
       <UserInfoProvider>
+        <PriceProvider>
         <QueryClientProvider client={queryClient}>
           <RouterProvider router={router} />
         </QueryClientProvider>
+        </PriceProvider>
       </UserInfoProvider>
     </AuthProvider>
 

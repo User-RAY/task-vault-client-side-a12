@@ -23,6 +23,8 @@ import LogRoute from "./LogRoute";
 import WorkerRoute from "./WorkerRoute";
 import BuyerRoute from "./BuyerRoute";
 import AdminRoute from "./AdminRoute";
+import Purchase from "../Pages/Purchase/Purchase";
+import CoinInfo from "../Pages/CoinInfo/CoinInfo";
 
 const router = createBrowserRouter([
     {
@@ -63,7 +65,11 @@ const router = createBrowserRouter([
         },
         {
           path: "purchase",
-          element: <BuyerRoute><div>purchase</div></BuyerRoute>,
+          element: <BuyerRoute><CoinInfo></CoinInfo></BuyerRoute>,
+        },
+        {
+          path: "pay",
+          element: <BuyerRoute><Purchase></Purchase></BuyerRoute>,
         },
         {
           path: "history",
