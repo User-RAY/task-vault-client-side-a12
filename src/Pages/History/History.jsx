@@ -1,10 +1,27 @@
+import { useEffect, useState } from "react";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import useUser from "../../Hooks/useUser";
 
 
 const History = () => {
-    return (
-        <div>
 
-            <div className="overflow-x-auto">
+    const [paymentHistory, setPaymentHistory] = useState();
+
+    const axiosSecure = useAxiosSecure();
+    const {userInfo} = useUser();
+
+    useEffect(() => {
+        axiosSecure.get(`/history/${userInfo.user_email}`)
+        .then(res => {
+            setPaymentHistory(res.data);
+        })
+    }, [axiosSecure, userInfo])
+
+
+    return (
+        <div className="mb-6">
+
+            <div className="overflow-x-auto ">
             <table className="table">
                 {/* head */}
                 <thead>
@@ -17,35 +34,17 @@ const History = () => {
                 </tr>
                 </thead>
                 <tbody>
-                {/* row 1 */}
-                <tr>
-                    <th>1</th>
-                    <td>2025-01-25 12:34	</td>
-                    <td>10</td>
-                    <td>$1</td>
-                    <td>tx_1Iy2dfJvC9pXQ</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>2025-01-25 12:34	</td>
-                    <td>10</td>
-                    <td>$1</td>
-                    <td>tx_1Iy2dfJvC9pXQ</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>2025-01-25 12:34	</td>
-                    <td>10</td>
-                    <td>$1</td>
-                    <td>tx_1Iy2dfJvC9pXQ</td>
-                </tr>
-                <tr>
-                    <th>1</th>
-                    <td>2025-01-25 12:34	</td>
-                    <td>10</td>
-                    <td>$1</td>
-                    <td>tx_1Iy2dfJvC9pXQ</td>
-                </tr>
+
+                {
+                    paymentHistory?.map((history, index) =><tr key={history._id}>
+                        <th>{index + 1}</th>
+                        <td>{history.date}</td>
+                        <td>{history.purchasedCoin}</td>
+                        <td>${history.amount}</td>
+                        <td>{history.paymentID}</td>
+                    </tr>)
+                }
+
 
                 </tbody>
             </table>

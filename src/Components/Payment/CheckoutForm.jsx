@@ -11,6 +11,7 @@ const CheckoutForm = () => {
 
 
     const [error, setError] = useState('');
+    const [disable, setDisable] = useState(false);
 
     const [clientSecret, setClientSecret] = useState('');
 
@@ -42,6 +43,8 @@ const CheckoutForm = () => {
     const handleSubmit = async(e) => {
 
         e.preventDefault();
+
+        setDisable(true);
 
         if (!stripe || !elements) {
             return;
@@ -89,8 +92,10 @@ const CheckoutForm = () => {
                 timer: 2500
               });
             card.clear();
+            setDisable(false);
         } else {
             card.clear();
+            setDisable(false);
             if (paymentIntent.status == 'succeeded') {
 
                 const date = moment().format('MMMM Do YYYY, h:mm:ss a');
@@ -151,7 +156,7 @@ const CheckoutForm = () => {
                 }}
                 >
                 </CardElement>
-                <button className='btn btn-primary mt-4' type='submit' disabled={!stripe || !clientSecret}>Pay</button>
+                <button className='btn btn-primary mt-4' type='submit' disabled={!stripe || !clientSecret || disable}>Pay</button>
             </form>
 
             <h2 className='text-red-500 mt-4'>{error}</h2>
