@@ -103,6 +103,8 @@ const MyTask = () => {
                     <th>#</th>
                     <th>Task Image</th>
                     <th>Task Title</th>
+                    <th>Required Worker</th>
+                    <th>Payable amount</th>
                     <th>completion_date</th>
                     <th>Update</th>
                     <th>Delete</th>
@@ -126,6 +128,8 @@ const MyTask = () => {
                             </div>
                         </td>
                         <td>{taskInfo.task_title}</td>
+                        <td>{taskInfo.required_workers}</td>
+                        <td>{taskInfo.payable_amount} coin</td>
                         <td>{taskInfo.completion_date}</td>
                         <td><button className="btn btn-info" onClick={() => handleModal(taskInfo)}>Update</button></td>
                         <td><button className="btn btn-error" onClick={() => handleDelete(taskInfo._id)}>Delete</button></td>

@@ -11,7 +11,7 @@ const WorkerRoute = ({children}) => {
     const location = useLocation();
 
     if (userLoading) {
-        return <div className='h-[80vh'><div className="flex justify-center items-center h-full"><span className="loading loading-bars loading-lg"></span></div></div>
+        return <div className='h-[80vh]'><div className="flex justify-center items-center h-full"><span className="loading loading-bars loading-lg"></span></div></div>
     }
     
 

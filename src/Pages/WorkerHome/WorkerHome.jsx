@@ -34,7 +34,7 @@ const WorkerHome = () => {
 
     const totalSubmissionCount = totalmySubmissions.length;
     const totalPendingSubmissionCount = pendingSubmissions.length;
-
+    const totalEarnings = approvedSubmissions.reduce((total, current) => total + current.payable_amount, 0)
     
 
     
@@ -53,9 +53,8 @@ const WorkerHome = () => {
                     <div className="stat-value">{totalPendingSubmissionCount}</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-title">New Registers</div>
-                    <div className="stat-value">1,200</div>
-                    <div className="stat-desc">↘︎ 90 (14%)</div>
+                    <div className="stat-title">Total Earning</div>
+                    <div className="stat-value">{totalEarnings} Coins</div>
                 </div>
                 </div>
             </div>

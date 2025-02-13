@@ -11,7 +11,7 @@ const BuyerHome = () => {
 
     const axiosSecure = useAxiosSecure();
 
-    const {userInfo} = useUser();
+    const {userInfo, refetch: userRefetch} = useUser();
 
     const {data: subReview = [], refetch} = useQuery({
         queryKey: ['subReview'], 
@@ -21,13 +21,28 @@ const BuyerHome = () => {
         }
     })
 
-    const {data: mytask = []} = useQuery({
+    const {data: mytask = [], refetch: taskRefetch} = useQuery({
         queryKey: ['mytask'], 
         queryFn: async() =>{
             const res = await axiosSecure.get(`/mytask/${userInfo.user_email}`);
             return res.data;
         }
     })
+    
+    const {data: payment = []} = useQuery({
+        queryKey: ['payment'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/history/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+
+    const totalPayment = payment.reduce((total, current) => total + current.amount , 0);
+
+
+    
+    
 
     let toatlPendingCount = 0;
     mytask.forEach(element => {
@@ -38,25 +53,55 @@ const BuyerHome = () => {
     
     
 
-    const handleAction = async(id, action) => {
-
+    const handleAction = async(id, action, buyer, worker, payAmount, taskID) => {
+        
 
         const takenAction = {
             status: action
         }
+
+        const PayableCoin = {
+            buyer: buyer,
+            worker: worker,
+            coin: payAmount
+        }
+        const reqWorker = mytask.find(task => task._id == taskID);
+        
+        const requiredWorkerUpadate = { required_workers: parseFloat(reqWorker.required_workers) + 1}
+
         
         const res = await axiosSecure.patch(`/status/${id}`, takenAction);
 
-
         if (res.data.modifiedCount) {
+            if (action == 'approve') {
+                const res1 = await axiosSecure.patch(`/user`, PayableCoin);
+                if (res1.data.buyerRes.modifiedCount && res1.data.workerRes.modifiedCount) {
+                    userRefetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "success",
+                        title: `Status Upadated and worker payed ${payAmount} Coin/Coins`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+                
+            }  else {
+                const res2 = await axiosSecure.patch(`/task/${taskID}`, requiredWorkerUpadate);
+                if (res2.data.modifiedCount) {
+                    taskRefetch();
+                    Swal.fire({
+                        position: "top-end",
+                        icon: "info",
+                        title: `Status Upadated and Required Worker Increased by 1. Updated Total Worker:${requiredWorkerUpadate.required_workers}`,
+                        showConfirmButton: false,
+                        timer: 1500
+                      });
+                }
+            }
             refetch();
-            Swal.fire({
-                position: "top-end",
-                icon: "success",
-                title: "Status Upadated",
-                showConfirmButton: false,
-                timer: 1500
-              });
+
+
         }
 
 
@@ -82,8 +127,8 @@ const BuyerHome = () => {
                     <div className="stat-value">{toatlPendingCount}</div>
                 </div>
                 <div className="stat">
-                    <div className="stat-title">Total Payment Paid</div>
-                    <div className="stat-value">1,200</div>
+                    <div className="stat-title">Total Payment Paid for Coins</div>
+                    <div className="stat-value">${totalPayment}</div>
 
                 </div>
                 </div>
@@ -116,7 +161,7 @@ const BuyerHome = () => {
                             setSelectedSub(sub.submission_details); 
                             document.getElementById('my_modal_5').showModal()
                             }}>View</button></th>
-                        <td><button className="btn btn-primary" onClick={() => handleAction(sub._id, 'approve')}>Approve</button> <button className="btn btn-error" onClick={() => handleAction(sub._id, 'reject')}>Reject</button></td>
+                        <td><button className="btn btn-primary" onClick={() => handleAction(sub._id, 'approve', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id)}>Approve</button> <button className="btn btn-error" onClick={() => handleAction(sub._id, 'reject', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id)}>Reject</button></td>
                     </tr>)
                     }
 

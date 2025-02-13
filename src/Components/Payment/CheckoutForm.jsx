@@ -58,18 +58,16 @@ const CheckoutForm = () => {
         }
 
 
-        const {error, paymentMethod} = await stripe.createPaymentMethod({
+        const {error} = await stripe.createPaymentMethod({
             type: "card",
             card,
         });
 
 
         if (error) {
-            console.log('error', error);
             setError(error.message);
             
         } else {
-            console.log('paymentMethod', paymentMethod);
             setError('');
         }
 

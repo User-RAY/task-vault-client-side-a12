@@ -42,6 +42,8 @@ const TaskDetails = () => {
 
         const updatedTask = {...taskdata};
 
+        const requiredWorkerUpadate = { required_workers: parseFloat(updatedTask.required_workers) - 1}
+
         updatedTask.submission_details = info
         updatedTask.current_date = formattedToday
         updatedTask.status = 'pending'
@@ -59,16 +61,28 @@ const TaskDetails = () => {
         axiosSecure.post('/submission', submission)
         .then(res =>{
             if(res.data.insertedId){
+                axiosSecure.patch(`/task/${taskdata._id}`, requiredWorkerUpadate)
+                .then( res => {
+                    if (res.data.modifiedCount) {
+
+                        setTaskdata(prevData => ({
+                            ...prevData,
+                            required_workers: prevData.required_workers - 1
+                        }));
+                        
+                        Swal.fire({
+                            position: "top-end",
+                            icon: "success",
+                            title: "Submiited",
+                            showConfirmButton: false,
+                            timer: 1500
+                          });
+                    }
+                })
+
                 e.target.reset();
-                Swal.fire({
-                    position: "top-end",
-                    icon: "success",
-                    title: "Submiited",
-                    showConfirmButton: false,
-                    timer: 1500
-                  });
+
             }
-            
         })
         
 
