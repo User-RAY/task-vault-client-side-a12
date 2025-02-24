@@ -1,4 +1,5 @@
 import Best from "../../Components/Best/Best";
+import ChooseUs from "../../Components/ChooseUs/ChooseUs";
 import Faq from "../../Components/Faq/Faq";
 import Hero from "../../Components/Hero/Hero";
 import How from "../../Components/How/How";
@@ -26,6 +27,10 @@ const Home = () => {
             <div className="mt-14 mb-6 w-11/12 mx-auto">
                 <h1 className="text-4xl mt-20 mb-10 font-bold text-center">How It Works</h1>
                 <How></How>
+            </div>
+
+            <div className="mt-14 mb-6 w-11/12 mx-auto">
+                <ChooseUs></ChooseUs>
             </div>
 
 

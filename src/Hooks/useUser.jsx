@@ -7,6 +7,7 @@ import { useQuery } from "@tanstack/react-query";
 const useUser = () => {
 
     const {user} = useContext(AuthContext);
+    
     const axiosSecure = useAxiosSecure();
     const token = localStorage.getItem('access-token')
 

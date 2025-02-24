@@ -5,6 +5,7 @@ import { useState } from "react";
 import Swal from "sweetalert2";
 
 
+
 const BuyerHome = () => {
 
     const [selectedSub, setSelectedSub] = useState(null);
@@ -53,7 +54,7 @@ const BuyerHome = () => {
     
     
 
-    const handleAction = async(id, action, buyer, worker, payAmount, taskID) => {
+    const handleAction = async(id, action, buyer, worker, payAmount, taskID, title, buyerName) => {
         
 
         const takenAction = {
@@ -65,6 +66,21 @@ const BuyerHome = () => {
             worker: worker,
             coin: payAmount
         }
+
+        const notificationApprove = { 
+                message: `you have earned ${payAmount} coin from ${buyerName} for completing ${title}`,
+                ToEmail: worker,
+                actionRoute : '/dashboard/worker-home' ,
+                Time: new Date()
+            } 
+        const notificationReject = { 
+            message: `your submission is recjected  from ${buyerName} task ${title}`,
+            ToEmail: worker,
+            actionRoute : '/dashboard/worker-home' ,
+            Time: new Date()
+        }     
+
+        
         const reqWorker = mytask.find(task => task._id == taskID);
         
         const requiredWorkerUpadate = { required_workers: parseFloat(reqWorker.required_workers) + 1}
@@ -75,7 +91,9 @@ const BuyerHome = () => {
         if (res.data.modifiedCount) {
             if (action == 'approve') {
                 const res1 = await axiosSecure.patch(`/user`, PayableCoin);
-                if (res1.data.buyerRes.modifiedCount && res1.data.workerRes.modifiedCount) {
+                const notificationRes = await axiosSecure.post(`/notifications`, notificationApprove);
+                
+                if (res1.data.buyerRes.modifiedCount && res1.data.workerRes.modifiedCount &&  notificationRes.data.insertedId) {
                     userRefetch();
                     Swal.fire({
                         position: "top-end",
@@ -88,7 +106,8 @@ const BuyerHome = () => {
                 
             }  else {
                 const res2 = await axiosSecure.patch(`/task/${taskID}`, requiredWorkerUpadate);
-                if (res2.data.modifiedCount) {
+                const notificationRes1 = await axiosSecure.post(`/notifications`, notificationReject);
+                if (res2.data.modifiedCount && notificationRes1.data.insertedId) {
                     taskRefetch();
                     Swal.fire({
                         position: "top-end",
@@ -161,7 +180,7 @@ const BuyerHome = () => {
                             setSelectedSub(sub.submission_details); 
                             document.getElementById('my_modal_5').showModal()
                             }}>View</button></th>
-                        <td><button className="btn btn-primary" onClick={() => handleAction(sub._id, 'approve', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id)}>Approve</button> <button className="btn btn-error" onClick={() => handleAction(sub._id, 'reject', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id)}>Reject</button></td>
+                        <td><button className="btn btn-primary" onClick={() => handleAction(sub._id, 'approve', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id, sub.task_title, sub.buyer_name)}>Approve</button> <button className="btn btn-error" onClick={() => handleAction(sub._id, 'reject', sub.buyer_email, sub.worker_email, sub.payable_amount, sub.task_id, sub.task_title, sub.buyer_name)}>Reject</button></td>
                     </tr>)
                     }
 

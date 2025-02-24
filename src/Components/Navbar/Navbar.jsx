@@ -10,6 +10,7 @@ const Navbar = () => {
 
     const {userInfo} = useUser();
 
+    
 
     const handleLogout = () => {
         signout()

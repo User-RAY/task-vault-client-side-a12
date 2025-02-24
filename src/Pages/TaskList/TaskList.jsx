@@ -8,7 +8,7 @@ const TaskList = () => {
 
 
     return (
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 mb-8">
 
         {
             taskList.map(data => <div key={data._id}  className="flex flex-col h-full">

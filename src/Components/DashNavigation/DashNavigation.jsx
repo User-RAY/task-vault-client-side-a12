@@ -35,7 +35,7 @@ const adminlink = <>
 
             <div className="drawer lg:drawer-open">
             <input id="my-drawer-2" type="checkbox" className="drawer-toggle" />
-            <div className="drawer-content flex flex-col items-center justify-start">
+            <div className="drawer-content flex flex-col items-center justify-start min-h-full">
                 {/* Page content here */}
 
                 <label htmlFor="my-drawer-2" className="btn btn-info drawer-button lg:hidden mb-8">
@@ -43,7 +43,7 @@ const adminlink = <>
                 Open Navigation Panel
                 </label>
 
-                <div className="mt-8 w-[95%] mx-auto">
+                <div className="mt-8 w-[95%] mx-auto min-h-full">
                     {children}
                 </div>
             </div>

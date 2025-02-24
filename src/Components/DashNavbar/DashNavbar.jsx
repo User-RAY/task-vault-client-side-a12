@@ -3,12 +3,28 @@ import { IoIosNotifications } from "react-icons/io";
 import { useContext } from "react";
 import AuthContext from "../../Provider/Auth/AuthContext";
 import useUser from "../../Hooks/useUser";
+import { useQuery } from "@tanstack/react-query";
+import useAxiosSecure from "../../Hooks/useAxiosSecure";
 
 
 const DashNavbar = () => {
 
     const {user, signout, loading} = useContext(AuthContext);
     const {userInfo} = useUser();
+
+    const axiosSecure = useAxiosSecure();
+
+    
+    const {data: noti = []} = useQuery({
+        queryKey: ['noti'], 
+        queryFn: async() =>{
+            const res = await axiosSecure.get(`/notifications/${userInfo.user_email}`);
+            return res.data;
+        }
+    })
+
+
+    let len = noti.length;
     
 
     const handleLogout = () => {
@@ -104,16 +120,19 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
                                 <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
                                     <div className="indicator">
                                     <IoIosNotifications className="text-2xl text-yellow-500" />
-                                    <span className="badge badge-sm indicator-item">8</span>
+                                    <span className="badge badge-sm indicator-item">{len}</span>
                                     </div>
                                 </div>
                                 <div
                                     tabIndex={0}
                                     className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                                    <div className="card-body">
-                                    <span className="text-lg font-bold">8 notification</span>
+                                    <div className="card-body max-h-[50vh] overflow-y-scroll">
+                                    <span className="text-lg font-bold">{len} notification</span>
                                     <div className="card-actions">
-                                        <button className="btn btn-primary btn-block">View notification</button>
+                                        {/* <button className="btn btn-primary btn-block">View notification</button> */}
+                                        {
+                                            noti.map((msg) => <p className="border-t border-black pt-2 font-medium" key={msg._id}>{msg.message}</p> )
+                                        }
                                     </div>
                                     </div>
                                 </div>

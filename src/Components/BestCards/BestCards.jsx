@@ -1,14 +1,16 @@
 import PropTypes from "prop-types";
 
 
-const BestCards = ({best=true, test={}}) => {
+const BestCards = ({best=true, test={}, user={}}) => {
+
+    
     return (
         <div>
 
             <div className={`card  ${best ? 'bg-base-100' : 'bg-slate-700 text-white'} shadow-xl`}>
                 <figure className="px-10 pt-10">
                     <img
-                    src="https://img.daisyui.com/images/stock/photo-1606107557195-0e29a4b5b4aa.webp"
+                    src={best ? user.user_img :  test.photo }
                     alt="Profile Picture"
                     className="object-cover rounded-full w-52 h-52" />
                 </figure>
@@ -17,7 +19,7 @@ const BestCards = ({best=true, test={}}) => {
                 {
                     best ? <>
                             <div className="card-body items-center text-center">
-                                <h2 className="card-title">Available Coins: <span>50</span></h2>  
+                                <h2 className="card-title">Available Coins: <span>{user.coin}</span></h2>  
                             </div>
 
                            </> : <>
@@ -38,6 +40,7 @@ const BestCards = ({best=true, test={}}) => {
 BestCards.propTypes = {
     best: PropTypes.bool,
     test: PropTypes.object,
+    user: PropTypes.object
 }
 
 export default BestCards;

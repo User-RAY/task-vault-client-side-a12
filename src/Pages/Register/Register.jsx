@@ -2,6 +2,7 @@ import { useContext, useState } from "react";
 import { Link, useNavigate } from "react-router-dom";
 import AuthContext from "../../Provider/Auth/AuthContext";
 import useAxiosPublic from "../../Hooks/useAxiosPublic";
+import Swal from "sweetalert2";
 
 const Register = () => {
 
@@ -16,55 +17,95 @@ const Register = () => {
       setSelectedOption(e.target.value);
     };
 
-    const handleRegister = (e) => {
+    const imgHostApi = import.meta.env.VITE_imageHostApi;
+
+    const imgHost = `https://api.imgbb.com/1/upload?key=${imgHostApi}`
+
+    const handleRegister = async(e) => {
 
         e.preventDefault();
 
         setErrorMessage('');
 
-        const name = e.target.name.value;
-        const photo = e.target.photo.value;
-        const email = e.target.email.value;
-        const password = e.target.password.value;
-        const role = selectedOption;
-        let coin = 0;
-        if (role === "worker") {
-            coin = 10;
-        } else {
-            coin = 50;
-        }
-        
-
-        register(email, password)
-        .then(() => {
-            const updateUserData = {displayName: name, photoURL: photo};
-            updateUserProfile(updateUserData)
-            .then(() => {
-                setUser((prevUser) => {
-                return {...prevUser, updateUserData}
+            Swal.fire({
+                position: "top-left",
+                icon: "info",
+                title: "Please wait...Image is Uploading",
+                showConfirmButton: false,
+                timer: 1000
                 });
-            })
-            const userInfo = {
-                user_name: name,
-                user_email: email,
-                user_img: photo,
-                coin: coin,
-                role: role
+            
+            const imageFile = {image: e.target.photo.files[0]}
+//             const formData = new FormData();
+// formData.append("image", imageFile);
+
+            const res = await axiosPublic.post(imgHost, imageFile, {
+                headers: {
+                    'content-type': 'multipart/form-data'
+                }
+            });
+
+ 
+            
+
+            if (res.data.success) {
+
+                const name = e.target.name.value;
+                const photo = res.data.data.display_url;
+                const email = e.target.email.value.toLowerCase();
+                const password = e.target.password.value;
+                const role = selectedOption;
+                let coin = 0;
+                if (role === "worker") {
+                    coin = 10;
+                } else {
+                    coin = 50;
+                }
+                
+        
+                register(email, password)
+                .then(() => {
+                    const updateUserData = {displayName: name, photoURL: photo};
+                    updateUserProfile(updateUserData)
+                    .then(() => {
+                        setUser((prevUser) => {
+                        return {...prevUser, updateUserData}
+                        });
+                    })
+                    const userInfo = {
+                        user_name: name,
+                        user_email: email,
+                        user_img: photo,
+                        coin: coin,
+                        role: role
+                    }
+        
+                    axiosPublic.post('/users', userInfo)
+                    .then(() => {
+                        
+                        e.target.reset();
+                    })
+                    navigate('/')
+                  })
+                  .catch((error) => {
+                    const err = error.message;
+                    setErrorMessage(err)
+                    setLoading(false);
+                  });
+        
+                
+
+            } else {
+                Swal.fire({
+                    position: "top-left",
+                    icon: "info",
+                    title: "Image Upload failed",
+                    showConfirmButton: false,
+                    timer: 1000
+                    });
             }
 
-            axiosPublic.post('/users', userInfo)
-            .then(() => {
-                
-                e.target.reset();
-            })
-            navigate('/')
-          })
-          .catch((error) => {
-            const err = error.message;
-            setErrorMessage(err)
-            setLoading(false);
-          });
-
+      
     }
 
 
@@ -87,12 +128,15 @@ const Register = () => {
                         </label>
                         <input type="email" name="email" placeholder="email" className="input input-bordered" required />
                         </div>
+
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Photo-URL</span>
                         </label>
-                        <input type="text" name="photo" placeholder="Photo-URL" className="input input-bordered" required />
+
+                        <input type="file" name="photo" placeholder="Photo-URL" className="input input-bordered" required />
                         </div>
+
                         <div className="form-control">
                         <label className="label">
                             <span className="label-text">Password</span>

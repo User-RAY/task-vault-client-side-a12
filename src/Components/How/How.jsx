@@ -2,10 +2,15 @@ import { FaUserPlus } from "react-icons/fa6";
 import { FaTasks } from "react-icons/fa";
 import { FaCoins } from "react-icons/fa6";
 import { FaWallet } from "react-icons/fa";
+import { Link } from "react-router-dom";
+import useUser from "../../Hooks/useUser";
 
 
 
 const How = () => {
+
+    const {userInfo} = useUser();
+
     return (
         <div>
 
@@ -80,9 +85,11 @@ const How = () => {
                     </div>
                     </div>
                     <div className="mt-10">
-                    <button className="btn bg-blue-500">
-                        Get Started Now!
-                    </button>
+                    <Link to={(userInfo === undefined) ? 'register' : (userInfo?.role === 'worker') ? '/dashboard/worker' : (userInfo.role === 'buyer') ? '/dashboard/buyer' : '/'}>
+                        <button className="btn bg-blue-500">
+                            Get Started Now!
+                        </button>
+                    </Link>
                     </div>
                 </div>
             </div>

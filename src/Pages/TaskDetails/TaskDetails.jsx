@@ -1,4 +1,4 @@
-import { useParams } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
 import { useEffect, useState } from "react";
 import useUser from "../../Hooks/useUser";
@@ -14,19 +14,30 @@ const TaskDetails = () => {
     const {id} =useParams();
     const axiosSecure = useAxiosSecure();
 
+    const navigate = useNavigate();
+
     useEffect(()=> {
         axiosSecure.get(`/taskdetails/${id}`)
         .then(res => {
             setTaskdata(res.data);
         })
+
+        if (taskdata?.required_workers < 1) {
+
+            navigate('/dashboard/tasklist');
     
-    },[axiosSecure, id])
+        }
+    
+    },[axiosSecure, id, taskdata, navigate])
+
 
 
     
 
-    const handleSubmit = (e) => {
+    const handleSubmit = (e, title, buyerEmail) => {
         e.preventDefault();
+
+
 
         const today = new Date();
         const yyyy = today.getFullYear();
@@ -58,25 +69,40 @@ const TaskDetails = () => {
         
         const submission = updatedTask;
 
+        const notifi = {
+            message: `A new submission has been made by ${userInfo.user_name} for the task ${title}. Please review it.`,
+            ToEmail: buyerEmail,
+            actionRoute: "/dashboard/buyer-home",
+            Time: new Date()
+          }
+          
+
+
         axiosSecure.post('/submission', submission)
         .then(res =>{
             if(res.data.insertedId){
                 axiosSecure.patch(`/task/${taskdata._id}`, requiredWorkerUpadate)
                 .then( res => {
                     if (res.data.modifiedCount) {
+                        axiosSecure.post('/notifications', notifi)
+                        .then( res1 => {
+                            if (res1.data.insertedId) {
+                                Swal.fire({
+                                    position: "top-end",
+                                    icon: "success",
+                                    title: "Submiited",
+                                    showConfirmButton: false,
+                                    timer: 1500
+                                  });
+                            }
+                        })
 
                         setTaskdata(prevData => ({
                             ...prevData,
                             required_workers: prevData.required_workers - 1
                         }));
                         
-                        Swal.fire({
-                            position: "top-end",
-                            icon: "success",
-                            title: "Submiited",
-                            showConfirmButton: false,
-                            timer: 1500
-                          });
+
                     }
                 })
 
@@ -84,6 +110,8 @@ const TaskDetails = () => {
 
             }
         })
+
+
         
 
     }
@@ -110,7 +138,7 @@ const TaskDetails = () => {
 
 
             <div className="my-8">
-                <form onSubmit={handleSubmit}>
+                <form onSubmit={(e) => handleSubmit(e, taskdata.task_title, taskdata.buyer_email)}>
 
                 <div className="form-control md:col-span-2">
                     <label className="label">
