@@ -9,6 +9,7 @@ const DashNavigation = ({children}) => {
     const {userInfo} = useUser();
 
 const buyerlink = <>
+<li><NavLink to='/dashboard/buyerprofile'>Profile</NavLink></li>
 <li><NavLink to='/dashboard/buyer'>Home</NavLink></li>
 <li><NavLink to='/dashboard/add'>Add New Tasks </NavLink></li>
 <li><NavLink to='/dashboard/task'>My Tasks</NavLink></li>
@@ -17,6 +18,7 @@ const buyerlink = <>
 </>
 
 const workerlink = <>
+<li><NavLink to='/dashboard/workerprofile'>Profile</NavLink></li>
 <li><NavLink to='/dashboard/worker'>Home</NavLink></li>
 <li><NavLink to='/dashboard/tasklist'>TaskList  </NavLink></li>
 <li><NavLink to='/dashboard/submissions'>My Submissions</NavLink></li>
@@ -24,6 +26,7 @@ const workerlink = <>
 </>
 
 const adminlink = <>
+<li><NavLink to='/dashboard/adminprofile'>Profile</NavLink></li>
 <li><NavLink to='/dashboard/admin'>Home</NavLink></li>
 <li><NavLink to='/dashboard/users'>Manage Users</NavLink></li>
 <li><NavLink to='/dashboard/managetask'>Manage Task</NavLink></li>

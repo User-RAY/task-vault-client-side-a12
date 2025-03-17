@@ -25,6 +25,7 @@ import BuyerRoute from "./BuyerRoute";
 import AdminRoute from "./AdminRoute";
 import Purchase from "../Pages/Purchase/Purchase";
 import CoinInfo from "../Pages/CoinInfo/CoinInfo";
+import Profile from "../Pages/Profile/Profile";
 
 const router = createBrowserRouter([
     {
@@ -109,6 +110,18 @@ const router = createBrowserRouter([
         {
           path: "managetask",
           element: <AdminRoute><ManageTask></ManageTask></AdminRoute>,
+        },
+        {
+          path: "buyerprofile",
+          element: <BuyerRoute><Profile></Profile></BuyerRoute>,
+        },
+        {
+          path: "workerprofile",
+          element: <WorkerRoute><Profile></Profile></WorkerRoute>,
+        },
+        {
+          path: "adminprofile",
+          element: <AdminRoute><Profile></Profile></AdminRoute>,
         },
 
       ]
