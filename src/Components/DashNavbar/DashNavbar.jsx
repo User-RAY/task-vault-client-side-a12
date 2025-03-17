@@ -71,81 +71,75 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
 </div>    
 
     return (
-        <div className="mt-10 w-11/12 mx-auto">
-
-
-            <div className="navbar shadow-sm">
-                        <div className="navbar-start flex-1">
-                            <div className="dropdown">
-                            <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
-                                <svg
-                                xmlns="http://www.w3.org/2000/svg"
-                                className="h-5 w-5"
-                                fill="none"
-                                viewBox="0 0 24 24"
-                                stroke="currentColor">
-                                <path
-                                    strokeLinecap="round"
-                                    strokeLinejoin="round"
-                                    strokeWidth="2"
-                                    d="M4 6h16M4 12h8m-8 6h16" />
-                                </svg>
-                            </div>
-                            <ul
-                                tabIndex={0}
-                                className="menu menu-sm dropdown-content bg-gray-400 rounded-box z-[50] mt-3 w-52 p-2 shadow">
-                                {
-                                    loading ? <span className="loading loading-bars loading-md text-blue-500"></span> : user ? links1 : links1
-                                }   
-
-                            </ul>
-                            </div>
-                            <NavLink to='/' className="btn btn-ghost text-xl"> <h1 className="">TaskVault</h1></NavLink>
-                        </div>
-                        <div className="navbar-end">
-
-                            <ul className="menu menu-horizontal px-1 hidden lg:flex">
-                            {
-                                    loading ? <span className="loading loading-bars loading-md text-blue-500"></span> : user ? links2 : links1
-                            } 
-                            </ul>
-                            
-                            <div className="flex lg:hidden">
-                                {
-                                    Profile
-                                }
-                            </div>
-                            
-                            <div className="dropdown dropdown-end block">
-                                <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
-                                    <div className="indicator">
-                                    <IoIosNotifications className="text-2xl text-yellow-500" />
-                                    <span className="badge badge-sm indicator-item">{len}</span>
-                                    </div>
+        <div className="shadow-sm sticky top-0 z-30 bg-base-100">
+            <div className="w-11/12 mx-auto">
+                <div className="navbar">
+                            <div className="navbar-start flex-1">
+                                <div className="dropdown">
+                                <div tabIndex={0} role="button" className="btn btn-ghost lg:hidden">
+                                    <svg
+                                    xmlns="http://www.w3.org/2000/svg"
+                                    className="h-5 w-5"
+                                    fill="none"
+                                    viewBox="0 0 24 24"
+                                    stroke="currentColor">
+                                    <path
+                                        strokeLinecap="round"
+                                        strokeLinejoin="round"
+                                        strokeWidth="2"
+                                        d="M4 6h16M4 12h8m-8 6h16" />
+                                    </svg>
                                 </div>
-                                <div
+                                <ul
                                     tabIndex={0}
-                                    className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
-                                    <div className="card-body max-h-[50vh] overflow-y-scroll">
-                                    <span className="text-lg font-bold">{len} notification</span>
-                                    <div className="card-actions">
-                                        {/* <button className="btn btn-primary btn-block">View notification</button> */}
-                                        {
-                                            noti.map((msg) => <p className="border-t border-black pt-2 font-medium" key={msg._id}>{msg.message}</p> )
-                                        }
+                                    className="menu menu-sm dropdown-content bg-gray-400 rounded-box z-[50] mt-3 w-52 p-2 shadow">
+                                    {
+                                        loading ? <span className="loading loading-bars loading-md text-blue-500"></span> : user ? links1 : links1
+                                    }
+                                </ul>
+                                </div>
+                                <NavLink to='/' className="btn btn-ghost text-xl"> <h1 className="">TaskVault</h1></NavLink>
+                            </div>
+                            <div className="navbar-end">
+                                <ul className="menu menu-horizontal px-1 hidden lg:flex">
+                                {
+                                        loading ? <span className="loading loading-bars loading-md text-blue-500"></span> : user ? links2 : links1
+                                }
+                                </ul>
+            
+                                <div className="flex lg:hidden">
+                                    {
+                                        Profile
+                                    }
+                                </div>
+            
+                                <div className="dropdown dropdown-end block">
+                                    <div tabIndex={0} role="button" className="btn btn-ghost btn-circle">
+                                        <div className="indicator">
+                                        <IoIosNotifications className="text-2xl text-yellow-500" />
+                                        <span className="badge badge-sm indicator-item">{len}</span>
+                                        </div>
                                     </div>
+                                    <div
+                                        tabIndex={0}
+                                        className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
+                                        <div className="card-body max-h-[50vh] overflow-y-scroll">
+                                        <span className="text-lg font-bold">{len} notification</span>
+                                        <div className="card-actions">
+                                            {/* <button className="btn btn-primary btn-block">View notification</button> */}
+                                            {
+                                                noti.map((msg) => <p className="border-t border-black pt-2 font-medium" key={msg._id}>{msg.message}</p> )
+                                            }
+                                        </div>
+                                        </div>
                                     </div>
                                 </div>
-                            </div>
-
-
-
-                            
-                        </div>
-
-            </div>
             
-                    
+                            </div>
+                </div>
+            
+            
+            </div>
         </div>
                                 
 
