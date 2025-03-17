@@ -17,6 +17,40 @@ const Login = () => {
 
     const axiosPublic = useAxiosPublic();
 
+    const handleQuickLogin = (role) => {
+
+        if (role == 'admin') {
+            login('olivia@admin.com', '123456')
+            .then(() => {
+                navigate(location?.state ? location.state : '/');
+              })
+              .catch((error) => {
+                const err = error.message;
+                setErrorMessage(err)
+                setLoading(false);
+              });
+        } else if (role == 'buyer') {
+            login('sam@buyer.com', '123456')
+            .then(() => {
+                navigate(location?.state ? location.state : '/');
+              })
+              .catch((error) => {
+                const err = error.message;
+                setErrorMessage(err)
+                setLoading(false);
+              });
+        } else {
+            login('john@worker.com', '123456')
+            .then(() => {
+                navigate(location?.state ? location.state : '/');
+              })
+              .catch((error) => {
+                const err = error.message;
+                setErrorMessage(err)
+                setLoading(false);
+              });
+        }
+    }
 
     const handleLogin = (e) => {
         e.preventDefault();
@@ -70,6 +104,13 @@ const Login = () => {
 
             <div className="min-h-screen flex flex-col justify-center items-center w-11/12 mx-auto my">
                 <h1 className="text-4xl my-4"> Login now </h1>
+
+                <div className="flex justify-center items-center gap-2 mb-6">
+                    <button className="btn bg-blue-500" onClick={() => handleQuickLogin('admin')}>Quick Login as Admin</button>
+                    <button className="btn bg-orange-400" onClick={() => handleQuickLogin('buyer')}>Quick Login as Buyer</button>
+                    <button className="btn bg-green-500" onClick={() => handleQuickLogin('worker')}>Quick Login as Worker</button>
+                </div>
+
                 <div className="card bg-base-100 w-full max-w-sm shrink-0 shadow-2xl">
                     <form className="card-body text-black pb-0" onSubmit={handleLogin}>
                         <div className="form-control">

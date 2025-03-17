@@ -34,7 +34,7 @@ const links2 = <>
     <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         
 const Profile = <>
-        <div className="dropdown dropdown-end tooltip tooltip-top" data-tip={user?.displayName }>
+        <div className="dropdown dropdown-end tooltip tooltip-right" data-tip={user?.displayName }>
             <div tabIndex={0} role="button" className="btn btn-ghost btn-circle avatar">
                 <div className="w-10 rounded-full border border-blue-500">
                 <img
