@@ -5,6 +5,7 @@ import AuthContext from "../../Provider/Auth/AuthContext";
 import useUser from "../../Hooks/useUser";
 import { useQuery } from "@tanstack/react-query";
 import useAxiosSecure from "../../Hooks/useAxiosSecure";
+import { BsCoin } from "react-icons/bs";
 
 
 const DashNavbar = () => {
@@ -51,7 +52,7 @@ const Profile = <>
             <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 p-2 shadow z-50">
-                <li><button onClick={handleLogout}>Logout</button></li>
+                <li className="text-black"><button onClick={handleLogout}>Logout</button></li>
             </ul>
         </div>
     </>  
@@ -59,19 +60,21 @@ const Profile = <>
 const links1 = <>
     <li className="pl-3">${userInfo?.coin} Coin</li>
 
-    <li className="pl-3"> {user?.displayName} | {userInfo?.role}</li>
+    <li className="pl-3"> {user?.displayName[0].toUpperCase() + user?.displayName.slice(1)} | {userInfo?.role[0].toUpperCase() + userInfo?.role.slice(1)}</li>
 </>
 
 
 const links2 = <div className="grid grid-cols-3 gap-2 items-center">
-    <li className="justify-self-end border-r border-black col-span-2 pr-2">${userInfo?.coin} Coin</li>
+    <li className="justify-self-end border-r border-black col-span-2"><div className="pr-1"> Coin: {userInfo?.coin}
+        <BsCoin className="text-lg text-yellow-600" />
+    </div></li>
     <div> {Profile}</div>
-    <li className="justify-self-end border-r pr-2 border-black col-span-2">{userInfo?.role} </li>
-    <li> {user?.displayName}</li>
+    <li className="justify-self-end border-r pr-2 border-black col-span-2">{userInfo?.role[0].toUpperCase() + userInfo?.role.slice(1)} </li>
+    <li className="font-bold"> {user?.displayName[0].toUpperCase() + user?.displayName.slice(1)}</li>
 </div>    
 
     return (
-        <div className="shadow-sm sticky top-0 z-30 bg-base-100">
+        <div className="shadow-sm sticky top-0 z-30 bg-neutral text-neutral-content ">
             <div className="w-11/12 mx-auto">
                 <div className="navbar">
                             <div className="navbar-start flex-1">
@@ -124,7 +127,7 @@ const links2 = <div className="grid grid-cols-3 gap-2 items-center">
                                         tabIndex={0}
                                         className="card card-compact dropdown-content bg-base-100 z-[1] mt-3 w-52 shadow">
                                         <div className="card-body max-h-[50vh] overflow-y-scroll">
-                                        <span className="text-lg font-bold">{len} notification</span>
+                                        <span className="text-lg font-bold text-black">{len} notification</span>
                                         <div className="card-actions">
                                             {/* <button className="btn btn-primary btn-block">View notification</button> */}
                                             {

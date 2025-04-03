@@ -53,10 +53,10 @@ const MySubmissions = () => {
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>task_title</th>
-                        <th>payable_amount</th>
-                        <th>Buyer_name</th>
-                        <th>status</th>
+                        <th>Task Title</th>
+                        <th>Payable Amount</th>
+                        <th>Buyer Name</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -68,8 +68,8 @@ const MySubmissions = () => {
                             <th>{((selectedpage-1)*10) + index+ 1}</th>
                             <td>{submission.task_title}</td>
                             <td>{submission.payable_amount}</td>
-                            <td>{submission.buyer_name}</td>
-                            <td className={`font-bold ${submission.status === 'pending' ? 'bg-yellow-300' : submission.status === 'approve' ? 'bg-green-500' : 'bg-red-600'}`}>{submission.status}</td>
+                            <td>{submission.buyer_name[0].toUpperCase() + submission.buyer_name.slice(1)}</td>
+                            <td className={`font-bold ${submission.status === 'pending' ? 'bg-yellow-300' : submission.status === 'approve' ? 'bg-green-500' : 'bg-red-600'}`}>{submission.status[0].toUpperCase() + submission.status.slice(1)}</td>
                         </tr> )
                     }
 

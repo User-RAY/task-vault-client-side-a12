@@ -2,6 +2,7 @@ import { useContext } from "react";
 import { NavLink } from "react-router-dom";
 import AuthContext from "../../Provider/Auth/AuthContext";
 import useUser from "../../Hooks/useUser";
+import { BsCoin } from "react-icons/bs";
 
 
 const Navbar = () => {
@@ -30,7 +31,7 @@ const Navbar = () => {
 
 const links2 = <>
     <li><NavLink to={userInfo?.role === 'buyer' ? '/dashboard/buyer' : userInfo?.role === 'worker' ? '/dashboard/worker' : userInfo?.role === 'admin' ? '/dashboard/admin' : '/dashboard/worker'}>Dashboard</NavLink></li>
-    <li className="self-center">${userInfo?.coin} Coin</li>
+    <li className="self-center"><div>Coin: {userInfo?.coin} <BsCoin className="text-lg text-yellow-600" /></div></li>
     <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
 </>         
 const Profile = <>
@@ -52,7 +53,7 @@ const Profile = <>
 
 
     return (
-        <div className="shadow-sm sticky top-0 z-30 bg-base-100">
+        <div className="shadow-sm sticky top-0 z-30 bg-neutral text-neutral-content">
             <div className="w-11/12 mx-auto">
                 <div className="navbar ">
                     <div className="navbar-start flex-1">

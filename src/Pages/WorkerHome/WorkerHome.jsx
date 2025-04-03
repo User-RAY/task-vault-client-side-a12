@@ -62,15 +62,15 @@ const WorkerHome = () => {
             <h2 className="mt-12 mb-8 text-2xl text-center font-medium">Approved Submissions</h2>
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+                {  approvedSubmissions.length < 1 ? <div className="font-bold text-3xl text-center mt-5">NO APPROVED SUBMISSION YET</div> :  <table className="table table-zebra">
                     {/* head */}
                     <thead>
                     <tr>
                         <th>#</th>
-                        <th>task_title</th>
-                        <th>payable_amount</th>
-                        <th>Buyer_name</th>
-                        <th>status</th>
+                        <th>Task Title</th>
+                        <th>Payable Amount</th>
+                        <th>Buyer Name</th>
+                        <th>Status</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -78,17 +78,18 @@ const WorkerHome = () => {
 
 
                     {
-                        approvedSubmissions.map((approve, index) => <tr key={approve._id}>
+                       approvedSubmissions.map((approve, index) => <tr key={approve._id}>
                             <th>{index + 1}</th>
                             <td>{approve.task_title}</td>
                             <td>{approve.payable_amount}</td>
-                            <td>{approve.buyer_name}</td>
-                            <td>{approve.status}</td>
+                            <td>{approve.buyer_name[0].toUpperCase() + approve.buyer_name.slice(1)}</td>
+                            <td>{approve.status[0].toUpperCase() + approve.status.slice(1)}</td>
                         </tr> )
                     }
 
                     </tbody>
-                </table>
+                    </table> 
+                }
             </div>
 
             
