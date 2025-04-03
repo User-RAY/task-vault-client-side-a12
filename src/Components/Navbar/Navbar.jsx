@@ -46,7 +46,7 @@ const Profile = <>
             <ul
                 tabIndex={0}
                 className="menu menu-sm dropdown-content bg-base-100 rounded-box mt-3 p-2 shadow z-50">
-                <li><button onClick={handleLogout}>Logout</button></li>
+                <li className="text-black"><button onClick={handleLogout}>Logout</button></li>
             </ul>
         </div>
     </>     

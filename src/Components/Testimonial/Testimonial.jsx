@@ -76,7 +76,7 @@ const Testimonial = () => {
                 spaceBetween={30}
                 autoplay={{
                     delay: 2500,
-                    disableOnInteraction: false,
+                    disableOnInteraction: true,
                   }}
                 navigation={{ clickable: true }}
                 pagination={{
@@ -93,12 +93,12 @@ const Testimonial = () => {
                     slidesPerView: 3, 
                   },
                 }}  
-
+                style={{ height: '400px' }}
                 >
 
                 {
 
-                    testimonials.map((test,index) => <SwiperSlide key={index}><BestCards  best={false} test={test}></BestCards></SwiperSlide>)
+                    testimonials.map((test,index) => <SwiperSlide key={index} className='h-full'><BestCards  best={false} test={test}></BestCards></SwiperSlide>)
                 }
 
             </Swiper>

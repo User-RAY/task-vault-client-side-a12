@@ -14,7 +14,7 @@ const How = () => {
     return (
         <div>
 
-            <div className="bg-gray-100 py-16">
+            <div className="pb-16">
                 <div className="px-6  text-center">
                     <p className="text-lg text-gray-600 mb-10">
                     Follow these simple steps to get started on our platform.

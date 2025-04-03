@@ -24,8 +24,8 @@ const Home = () => {
                 <Testimonial></Testimonial>
             </div>
 
-            <div className="mt-14 mb-6 w-11/12 mx-auto">
-                <h1 className="text-4xl mt-20 mb-10 font-bold text-center">How It Works</h1>
+            <div className="mt-36 mb-6 w-11/12 mx-auto">
+                <h1 className="text-4xl mt-20 mb-6 font-bold text-center">How It Works</h1>
                 <How></How>
             </div>
 

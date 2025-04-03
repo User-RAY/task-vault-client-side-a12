@@ -15,7 +15,7 @@ const Hero = () => {
                 spaceBetween={50}
                 slidesPerView={1}
                 autoplay={{
-                    delay: 2500,
+                    delay: 3000,
                     disableOnInteraction: false,
                   }}
                 navigation={{ clickable: true }}
