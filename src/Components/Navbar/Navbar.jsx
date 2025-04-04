@@ -25,14 +25,14 @@ const Navbar = () => {
     const links1 = <>
     <li><NavLink to='/login'>Login</NavLink></li>
     <li><NavLink to='/register'>Register</NavLink></li>
-    <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
+    <li><NavLink to='/about'>About Us</NavLink></li>
   </>
 
 
 const links2 = <>
     <li><NavLink to={userInfo?.role === 'buyer' ? '/dashboard/buyer' : userInfo?.role === 'worker' ? '/dashboard/worker' : userInfo?.role === 'admin' ? '/dashboard/admin' : '/dashboard/worker'}>Dashboard</NavLink></li>
     <li className="self-center"><div>Coin: {userInfo?.coin} <BsCoin className="text-lg text-yellow-600" /></div></li>
-    <li><a href="https://github.com/Programming-Hero-Web-Course4/b10a12-client-side-User-RAY" target="_blank">Join as Developer</a></li>
+
 </>         
 const Profile = <>
         <div className="dropdown dropdown-end tooltip tooltip-right" data-tip={user?.displayName }>

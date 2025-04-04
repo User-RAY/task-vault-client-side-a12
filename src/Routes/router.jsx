@@ -26,6 +26,7 @@ import AdminRoute from "./AdminRoute";
 import Purchase from "../Pages/Purchase/Purchase";
 import CoinInfo from "../Pages/CoinInfo/CoinInfo";
 import Profile from "../Pages/Profile/Profile";
+import About from "../Pages/History/About/About";
 
 const router = createBrowserRouter([
     {
@@ -44,6 +45,10 @@ const router = createBrowserRouter([
         {
           path: "/register",
           element: <LogRoute> <Register /> </LogRoute>,
+        },
+        {
+          path: "/about",
+          element: <About></About>,
         },
       ]
     },
