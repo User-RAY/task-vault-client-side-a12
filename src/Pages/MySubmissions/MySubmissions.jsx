@@ -47,8 +47,8 @@ const MySubmissions = () => {
         <div className="min-h-full flex flex-col justify-around">
 
 
-<div className="overflow-x-auto">
-                <table className="table table-zebra mb-6">
+            <div className="overflow-x-auto">
+               { subdata.length > 0 ? <table className="table table-zebra mb-6">
                     {/* head */}
                     <thead>
                     <tr>
@@ -75,7 +75,8 @@ const MySubmissions = () => {
 
 
                     </tbody>
-                </table>
+                </table> : <div className="text-4xl mt-28 text-center font-bold">YOU HAVE NOT MADE ANY SUBMISSION YET</div>
+               }
             </div>
 
             <div className="text-center flex justify-center items-end grow mb-32 lg:mb-16">

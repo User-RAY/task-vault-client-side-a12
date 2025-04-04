@@ -156,7 +156,7 @@ const BuyerHome = () => {
 
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+               { subReview.length > 0 ? <table className="table table-zebra">
                     {/* head */}
                     <thead>
                     <tr>
@@ -185,7 +185,8 @@ const BuyerHome = () => {
                     }
 
                     </tbody>
-                </table>
+                                        </table> : <div className="text-4xl text-center font-bold mt-12">NO SUBMISSION</div> 
+                }
             </div>
 
 

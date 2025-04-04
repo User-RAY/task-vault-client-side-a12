@@ -96,7 +96,7 @@ const MyTask = () => {
 
 
             <div className="overflow-x-auto">
-            <table className="table">
+           { mytask?.length > 0 ? <table className="table">
                 {/* head */}
                 <thead>
                 <tr>
@@ -138,7 +138,7 @@ const MyTask = () => {
                 }
 
                 </tbody>
-            </table>
+            </table> : <div className="text-4xl text-center font-bold mt-12">YOU HAVE NOT ADDED ANY TASK YET</div> }
             </div>
 
 

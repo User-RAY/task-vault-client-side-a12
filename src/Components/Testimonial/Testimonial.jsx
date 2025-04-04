@@ -76,7 +76,7 @@ const Testimonial = () => {
                 spaceBetween={30}
                 autoplay={{
                     delay: 2500,
-                    disableOnInteraction: true,
+                    disableOnInteraction: false,
                   }}
                 navigation={{ clickable: true }}
                 pagination={{

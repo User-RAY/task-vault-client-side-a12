@@ -91,7 +91,7 @@ const AdminHome = () => {
 
 
             <div className="overflow-x-auto">
-                <table className="table table-zebra">
+               { withdrawStatus.length > 0 ?  <table className="table table-zebra">
                     {/* head */}
                     <thead>
                     <tr>
@@ -122,7 +122,8 @@ const AdminHome = () => {
 
 
                     </tbody>
-                </table>
+                                 </table> : <div className="text-4xl text-center font-bold mt-12">CURRENTLY THERE IS NO PAYMENT REQUEST</div>
+               }   
             </div>
 
 
